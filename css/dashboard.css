@@ -1,0 +1,7 @@
+.icon-moodle {
+	background-image: url(./../img/app-dark.svg);
+}
+
+body.theme--dark .icon-moodle {
+	background-image: url(./../img/app.svg);
+}

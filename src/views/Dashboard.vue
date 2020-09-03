@@ -28,7 +28,6 @@ import { generateUrl } from '@nextcloud/router'
 import { DashboardWidget } from '@nextcloud/vue-dashboard'
 import { showError } from '@nextcloud/dialogs'
 import moment from '@nextcloud/moment'
-// eslint-disable-next-line
 import { getLocale } from '@nextcloud/l10n'
 
 export default {
@@ -74,13 +73,14 @@ export default {
 				}
 			})
 		},
-		lastId() {
-			const nbNotif = this.notifications.length
-			return (nbNotif > 0) ? this.notifications[0].id : null
-		},
-		lastDate() {
-			const nbNotif = this.notifications.length
-			return (nbNotif > 0) ? this.notifications[0].created_at : null
+		lastTimestamp() {
+			let maxTs = 0
+			this.notifications.forEach((n) => {
+				if (n.time > maxTs) {
+					maxTs = n.time
+				}
+			})
+			return (maxTs === 0) ? null : maxTs
 		},
 		lastMoment() {
 			return moment(this.lastDate)
@@ -110,7 +110,7 @@ export default {
 		fetchNotifications() {
 			const req = {}
 			req.params = {
-				since: this.lastId,
+				since: this.lastTimestamp,
 			}
 			axios.get(generateUrl('/apps/integration_moodle/notifications'), req).then((response) => {
 				this.processNotifications(response.data)
@@ -129,55 +129,32 @@ export default {
 			})
 		},
 		processNotifications(newNotifications) {
-			if (this.lastId) {
-				// just add those which are more recent than our most recent one
-				let i = 0
-				while (i < newNotifications.length && this.lastMoment.isBefore(newNotifications[i].created_at)) {
-					i++
-				}
-				if (i > 0) {
-					const toAdd = this.filter(newNotifications.slice(0, i))
-					this.notifications = toAdd.concat(this.notifications)
-				}
-			} else {
-				// first time we don't check the date
-				this.notifications = this.filter(newNotifications)
-			}
+			const toAdd = this.filter(newNotifications)
+			this.notifications = toAdd.concat(this.notifications)
 		},
 		filter(notifications) {
 			// no filtering for the moment
 			return notifications
 		},
 		getNotificationTarget(n) {
-			if (['favourite', 'mention', 'reblog'].includes(n.type)) {
-				return n.status.url
-			} else if (['follow'].includes(n.type)) {
-				return n.account.url
-			} else if (['follow_request'].includes(n.type)) {
-				return this.moodleUrl + '/web/follow_requests'
+			if (['event', 'recent'].includes(n.type)) {
+				return n.viewurl
 			}
 			return ''
 		},
 		getMainText(n) {
-			if (['favourite', 'mention', 'reblog'].includes(n.type)) {
-				return this.html2text(n.status.content)
-			} else if (n.type === 'follow') {
-				return t('integration_moodle', 'is following you')
-			} else if (n.type === 'follow_request') {
-				return t('integration_moodle', 'wants to follow you')
+			if (['recent'].includes(n.type)) {
+				return n.name
+			} else if (['event'].includes(n.type)) {
+				return n.name
 			}
 			return ''
 		},
 		getSubline(n) {
-			return this.getAuthorNameAndID(n)
-		},
-		getNotificationContent(n) {
-			if (['favourite', 'mention', 'reblog'].includes(n.type)) {
-				return this.html2text(n.status.content)
-			} else if (n.type === 'follow') {
-				return t('integration_moodle', '{name} is following you', { name: this.getAuthorNameAndID(n) })
-			} else if (n.type === 'follow_request') {
-				return t('integration_moodle', '{name} wants to follow you', { name: this.getAuthorNameAndID(n) })
+			if (['recent'].includes(n.type)) {
+				return n.coursename
+			} else if (['event'].includes(n.type)) {
+				return n.course.fullname
 			}
 			return ''
 		},
@@ -191,32 +168,30 @@ export default {
 			return temp.content.firstChild.textContent
 		},
 		getUniqueKey(n) {
-			return n.id
+			return n.type + n.id
 		},
 		getAuthorAvatarUrl(n) {
-			return (n.account && n.account.avatar)
-				? generateUrl('/apps/integration_moodle/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.account.avatar)
-				: ''
+			if (['event'].includes(n.type)) {
+				console.debug(n.course.courseimage)
+				return n.course.courseimage
+			} else if (['recent'].includes(n.type)) {
+				const el = document.createElement('img')
+				el.innerHTML = n.icon
+				const realUrl = el.firstChild.getAttribute('src')
+				return generateUrl('/apps/integration_moodle/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(realUrl)
+			}
+			return ''
 		},
 		getNotificationTypeImage(n) {
-			if (n.type === 'mention') {
-				return generateUrl('/svg/integration_moodle/arobase?color=777777')
-			} else if (['follow', 'follow_request'].includes(n.type)) {
-				return generateUrl('/svg/integration_moodle/add_user?color=ffffff')
-			} else if (['favourite'].includes(n.type)) {
-				return generateUrl('/svg/integration_moodle/starred?color=ffffff')
-			} else if (['reblog'].includes(n.type)) {
-				return generateUrl('/svg/integration_moodle/retweet?color=ffffff')
+			if (n.type === 'event') {
+				return generateUrl('/svg/integration_moodle/calendar?color=ffffff')
+			} else if (['recent'].includes(n.type)) {
+				return generateUrl('/svg/integration_moodle/time?color=ffffff')
 			}
 			return ''
 		},
 		getFormattedDate(n) {
 			return moment(n.created_at).locale(this.locale).format('LLL')
-		},
-		getAuthorNameAndID(n) {
-			return n.account.display_name
-				? n.account.display_name + ' (' + n.account.acct + ')'
-				: n.account.acct
 		},
 	},
 }

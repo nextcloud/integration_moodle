@@ -49,42 +49,75 @@ class MoodleAPIService {
         if (isset($recentItems['error'])) {
             return $recentItems;
         }
-        $courseIds = [];
-        foreach ($recentItems as $recentItem) {
-            if (isset($recentItem['courseid']) && !in_array($recentItem['courseid'], $courseIds)) {
-                array_push($courseIds, $recentItem['courseid']);
-            }
-        }
 
-        //$upcomingEvents = [];
-        //foreach ($courseIds as $courseId) {
-        //    $params['wsfunction'] = 'core_calendar_get_calendar_upcoming_view';
-        //    $params['courseid'] = $courseId;
-        //    $upcomingEvents = array_merge($upcomingEvents, $this->request($url, 'webservice/rest/server.php', $params));
-        //}
-
-        $results = $recentItems;
-
-        // filter by date
-        if (!is_null($since)) {
-            $results = array_filter($results, function($elem) use ($since) {
-                $ts = intval($elem['timeaccess']);
-                return $ts > $since;
-            });
-        }
-
-        // sort results by date
-        $a = usort($results, function($a, $b) {
+        // sort recent items by date DESC
+        $a = usort($recentItems, function($a, $b) {
             $ta = $a['timeaccess'];
             $tb = $b['timeaccess'];
             return ($ta > $tb) ? -1 : 1;
         });
 
+        // get courses and set 'time'
+        $courseIds = [];
+        foreach ($recentItems as $k => $recentItem) {
+            if (isset($recentItem['courseid']) && !in_array($recentItem['courseid'], $courseIds)) {
+                array_push($courseIds, $recentItem['courseid']);
+            }
+            $recentItems[$k]['time'] = $recentItem['timeaccess'];
+            $recentItems[$k]['type'] = 'recent';
+        }
+
+        // get upcoming events
+        $upcomingEvents = [];
+        foreach ($courseIds as $courseId) {
+            $params['wsfunction'] = 'core_calendar_get_calendar_upcoming_view';
+            $params['courseid'] = $courseId;
+            $oneRes = $this->request($url, 'webservice/rest/server.php', $params);
+            if (!isset($oneRes['error']) && isset($oneRes['events'])) {
+                $upcomingEvents = array_merge($upcomingEvents, $oneRes['events']);
+            }
+        }
+        // sort upcoming events by date ASC
+        $a = usort($upcomingEvents, function($a, $b) {
+            $ta = $a['timestart'];
+            $tb = $b['timestart'];
+            return ($ta < $tb) ? -1 : 1;
+        });
+
+        foreach ($upcomingEvents as $k => $upcomingEvent) {
+            $upcomingEvents[$k]['time'] = $upcomingEvent['timestart'];
+            $upcomingEvents[$k]['type'] = 'event';
+        }
+
+        $results = array_merge($upcomingEvents, $recentItems);
+
+        // filter by date
+        if (!is_null($since)) {
+            $results = array_filter($results, function($elem) use ($since) {
+                $ts = intval($elem['time']);
+                return $ts > $since;
+            });
+        }
+
         return $results;
     }
 
     public function getMoodleAvatar($url) {
-        return $this->client->get($url)->getBody();
+        $rawResult = $this->client->get($url)->getBody();
+        $success = preg_match('/<svg.*/', $rawResult, $matches);
+        //$result = $success === 1 ? $this->getBase64Svg($matches[0]) : $rawResult;
+        if ($success === 1) {
+            $result = '<?xml version="1.0"?>' . $matches[0];
+            //$result = $this->getBase64Svg($result);
+        } else {
+            $result = $rawResult;
+        }
+        error_log('RESult['.$success.'] '.$result);
+        return $result;
+    }
+
+    private function getBase64Svg(string $svgString): string {
+        return 'data:image/svg+xml;base64,' . base64_encode($svgString);
     }
 
     public function request(string $url, string $endPoint, array $params = [], string $method = 'GET'): array {

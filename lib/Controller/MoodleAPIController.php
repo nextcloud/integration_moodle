@@ -108,11 +108,11 @@ class MoodleAPIController extends Controller {
      * get notification list
      * @NoAdminRequired
      */
-    public function getNotifications(?int $since) {
+    public function getNotifications(?int $recentSince) {
         if ($this->accessToken === '') {
             return new DataResponse(['error' => 'plop'], 400);
         }
-        $result = $this->moodleAPIService->getNotifications($this->moodleUrl, $this->accessToken, $since);
+        $result = $this->moodleAPIService->getNotifications($this->moodleUrl, $this->accessToken, $recentSince);
         if (!isset($result['error'])) {
             $response = new DataResponse($result);
         } else {

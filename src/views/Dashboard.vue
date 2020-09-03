@@ -47,7 +47,8 @@ export default {
 	data() {
 		return {
 			moodleUrl: null,
-			notifications: [],
+			upcomingEvents: [],
+			recentItems: [],
 			locale: getLocale(),
 			loop: null,
 			state: 'loading',
@@ -59,6 +60,9 @@ export default {
 	computed: {
 		showMoreUrl() {
 			return this.moodleUrl + '/web/notifications'
+		},
+		notifications() {
+			return this.upcomingEvents.concat(this.recentItems)
 		},
 		items() {
 			return this.notifications.map((n) => {
@@ -73,17 +77,17 @@ export default {
 				}
 			})
 		},
-		lastTimestamp() {
+		lastRecentTimestamp() {
 			let maxTs = 0
-			this.notifications.forEach((n) => {
+			this.recentItems.forEach((n) => {
 				if (n.time > maxTs) {
 					maxTs = n.time
 				}
 			})
 			return (maxTs === 0) ? null : maxTs
 		},
-		lastMoment() {
-			return moment(this.lastDate)
+		lastRecentMoment() {
+			return moment.unix(this.lastRecentTimestamp)
 		},
 	},
 
@@ -110,7 +114,7 @@ export default {
 		fetchNotifications() {
 			const req = {}
 			req.params = {
-				since: this.lastTimestamp,
+				recentSince: this.lastRecentTimestamp,
 			}
 			axios.get(generateUrl('/apps/integration_moodle/notifications'), req).then((response) => {
 				this.processNotifications(response.data)
@@ -129,12 +133,29 @@ export default {
 			})
 		},
 		processNotifications(newNotifications) {
-			const toAdd = this.filter(newNotifications)
-			this.notifications = toAdd.concat(this.notifications)
+			// upcoming events: replace them inconditionally
+			this.upcomingEvents = newNotifications.events
+
+			// recent items: get the new ones
+			if (this.lastRecentTimestamp) {
+				// just add those which are more recent than our most recent one
+				let i = 0
+				while (i < newNotifications.recents.length && this.lastRecentTimestamp < newNotifications.recents[i].time) {
+					i++
+				}
+				if (i > 0) {
+					const toAdd = this.filterRecentItems(newNotifications.recents.slice(0, i))
+					this.recentItems = toAdd.concat(this.recentItems)
+				}
+			} else {
+				this.recentItems = newNotifications.recents
+			}
 		},
-		filter(notifications) {
-			// no filtering for the moment
-			return notifications
+		filterRecentItems(recentItems) {
+			return recentItems
+		},
+		filterUpcomingEvents(upcomingEvents) {
+			return upcomingEvents
 		},
 		getNotificationTarget(n) {
 			if (['event', 'recent'].includes(n.type)) {
@@ -146,7 +167,7 @@ export default {
 			if (['recent'].includes(n.type)) {
 				return n.name
 			} else if (['event'].includes(n.type)) {
-				return n.name
+				return '[' + this.getFormattedDate(n) + '] ' + n.name
 			}
 			return ''
 		},
@@ -172,7 +193,6 @@ export default {
 		},
 		getAuthorAvatarUrl(n) {
 			if (['event'].includes(n.type)) {
-				console.debug(n.course.courseimage)
 				return n.course.courseimage
 			} else if (['recent'].includes(n.type)) {
 				const el = document.createElement('img')
@@ -191,7 +211,7 @@ export default {
 			return ''
 		},
 		getFormattedDate(n) {
-			return moment(n.created_at).locale(this.locale).format('LLL')
+			return moment.unix(n.time).locale(this.locale).format('L')
 		},
 	},
 }

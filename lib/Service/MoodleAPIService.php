@@ -38,7 +38,7 @@ class MoodleAPIService {
         $this->client = $clientService->newClient();
     }
 
-    public function getNotifications(string $url, string $accessToken, ?int $since): array {
+    public function getNotifications(string $url, string $accessToken, ?int $recentSince): array {
         $params = [
             'wstoken' => $accessToken,
             'wsfunction' => 'block_recentlyaccesseditems_get_recent_items',
@@ -89,17 +89,18 @@ class MoodleAPIService {
             $upcomingEvents[$k]['type'] = 'event';
         }
 
-        $results = array_merge($upcomingEvents, $recentItems);
-
         // filter by date
-        if (!is_null($since)) {
-            $results = array_filter($results, function($elem) use ($since) {
+        if (!is_null($recentSince)) {
+            $recentItems = array_filter($recentItems, function($elem) use ($since) {
                 $ts = intval($elem['time']);
-                return $ts > $since;
+                return $ts > $recentSince;
             });
         }
 
-        return $results;
+        return [
+            'recents' => array_values($recentItems),
+            'events' => array_values($upcomingEvents)
+        ];
     }
 
     public function getMoodleAvatar($url) {

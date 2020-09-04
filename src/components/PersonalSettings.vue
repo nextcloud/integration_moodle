@@ -132,9 +132,14 @@ export default {
 					showSuccess(t('integration_moodle', 'Moodle access token successfully retrieved!'))
 				})
 				.catch((error) => {
+					let errorText = ''
+					if (error.response && error.response.request && error.response.request.responseText) {
+						const jsonError = JSON.parse(error.response.request.responseText)
+						errorText = ': ' + jsonError.error
+					}
 					showError(
 						t('integration_moodle', 'Failed to authenticate to Moodle')
-						+ ': ' + error.response.request.responseText
+						+ errorText
 					)
 				})
 				.then(() => {

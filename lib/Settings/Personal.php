@@ -43,10 +43,12 @@ class Personal implements ISettings {
     public function getForm() {
         $token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
         $url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
+        $searchEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '0');
 
         $userConfig = [
             'token' => $token,
-            'url' => $url
+            'url' => $url,
+            'search_enabled' => ($searchEnabled === '1')
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
         return new TemplateResponse(Application::APP_ID, 'personalSettings');

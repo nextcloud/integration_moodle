@@ -52,6 +52,15 @@
 				:placeholder="t('integration_moodle', 'Authenticate with OAuth')"
 				@input="onInput">
 		</div>
+		<div id="moodle-search-block">
+			<input
+				id="search-moodle"
+				type="checkbox"
+				class="checkbox"
+				:checked="state.search_enabled"
+				@input="onSearchChange">
+			<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
+		</div>
 	</div>
 </template>
 
@@ -85,6 +94,10 @@ export default {
 	},
 
 	methods: {
+		onSearchChange(e) {
+			this.state.search_enabled = e.target.checked
+			this.saveOptions()
+		},
 		onInput() {
 			const that = this
 			delay(function() {
@@ -103,6 +116,7 @@ export default {
 				values: {
 					token: this.state.token,
 					url: this.state.url,
+					search_enabled: this.state.search_enabled ? '1' : '0',
 				},
 			}
 			const url = generateUrl('/apps/integration_moodle/config')
@@ -150,6 +164,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#moodle-search-block {
+	margin-left: 30px;
+	margin-top: 30px;
+}
 .moodle-grid-form label {
 	line-height: 38px;
 }

@@ -103,6 +103,18 @@ class MoodleAPIService {
         ];
     }
 
+    public function search(string $url, string $accessToken, string $query): array {
+        $params = [
+            'wstoken' => $accessToken,
+            'wsfunction' => 'core_course_search_courses',
+            'moodlewsrestformat' => 'json',
+            'criterianame' => 'search',
+            'criteriavalue' => $query,
+        ];
+        $searchResult = $this->request($url, 'webservice/rest/server.php', $params);
+        return $searchResult['courses'];
+    }
+
     public function getMoodleAvatar($url) {
         $rawResult = $this->client->get($url)->getBody();
         $success = preg_match('/<svg.*/', $rawResult, $matches);
@@ -113,7 +125,7 @@ class MoodleAPIService {
         } else {
             $result = $rawResult;
         }
-        error_log('RESult['.$success.'] '.$result);
+        //error_log('RESult['.$success.'] '.$result);
         return $result;
     }
 

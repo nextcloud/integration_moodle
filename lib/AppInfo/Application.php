@@ -28,25 +28,25 @@ use OCA\Moodle\Search\MoodleSearchProvider;
  */
 class Application extends App implements IBootstrap {
 
-    public const APP_ID = 'integration_moodle';
+	public const APP_ID = 'integration_moodle';
 
-    /**
-     * Constructor
-     *
-     * @param array $urlParams
-     */
-    public function __construct(array $urlParams = []) {
-        parent::__construct(self::APP_ID, $urlParams);
+	/**
+	 * Constructor
+	 *
+	 * @param array $urlParams
+	 */
+	public function __construct(array $urlParams = []) {
+		parent::__construct(self::APP_ID, $urlParams);
 
-        $container = $this->getContainer();
-    }
+		$container = $this->getContainer();
+	}
 
-    public function register(IRegistrationContext $context): void {
-        $context->registerDashboardWidget(MoodleWidget::class);
-        $context->registerSearchProvider(MoodleSearchProvider::class);
-    }
+	public function register(IRegistrationContext $context): void {
+		$context->registerDashboardWidget(MoodleWidget::class);
+		$context->registerSearchProvider(MoodleSearchProvider::class);
+	}
 
-    public function boot(IBootContext $context): void {
-    }
+	public function boot(IBootContext $context): void {
+	}
 }
 

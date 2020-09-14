@@ -36,89 +36,89 @@ use OCA\Moodle\AppInfo\Application;
 class MoodleAPIController extends Controller {
 
 
-    private $userId;
-    private $config;
-    private $dbconnection;
-    private $dbtype;
+	private $userId;
+	private $config;
+	private $dbconnection;
+	private $dbtype;
 
-    public function __construct($AppName,
-                                IRequest $request,
-                                IServerContainer $serverContainer,
-                                IConfig $config,
-                                IL10N $l10n,
-                                IAppManager $appManager,
-                                IAppData $appData,
-                                ILogger $logger,
-                                MoodleAPIService $moodleAPIService,
-                                $userId) {
-        parent::__construct($AppName, $request);
-        $this->userId = $userId;
-        $this->l10n = $l10n;
-        $this->appData = $appData;
-        $this->serverContainer = $serverContainer;
-        $this->config = $config;
-        $this->logger = $logger;
-        $this->moodleAPIService = $moodleAPIService;
-        $this->accessToken = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
-        $this->moodleUrl = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
-    }
+	public function __construct($AppName,
+								IRequest $request,
+								IServerContainer $serverContainer,
+								IConfig $config,
+								IL10N $l10n,
+								IAppManager $appManager,
+								IAppData $appData,
+								ILogger $logger,
+								MoodleAPIService $moodleAPIService,
+								$userId) {
+		parent::__construct($AppName, $request);
+		$this->userId = $userId;
+		$this->l10n = $l10n;
+		$this->appData = $appData;
+		$this->serverContainer = $serverContainer;
+		$this->config = $config;
+		$this->logger = $logger;
+		$this->moodleAPIService = $moodleAPIService;
+		$this->accessToken = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
+		$this->moodleUrl = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
+	}
 
-    /**
-     * get notification list
-     * @NoAdminRequired
-     */
-    public function getMoodleUrl() {
-        return new DataResponse($this->moodleUrl);
-    }
+	/**
+	 * get notification list
+	 * @NoAdminRequired
+	 */
+	public function getMoodleUrl() {
+		return new DataResponse($this->moodleUrl);
+	}
 
-    /**
-     * authenticate and get access token
-     * @NoAdminRequired
-     */
-    public function getToken(string $login, string $password): DataResponse {
-        $result = $this->moodleAPIService->getToken($this->moodleUrl, $login, $password);
-        if (!isset($result['error'])) {
-            // we save the client ID and secret and give the client ID back to the UI
-            $this->config->setUserValue($this->userId, Application::APP_ID, 'token', $result['token']);
-            $this->config->setUserValue($this->userId, Application::APP_ID, 'privatetoken', $result['privatetoken']);
-            $data = [
-                'token' => $result['token']
-            ];
-            $response = new DataResponse($data);
-        } else {
-            $response = new DataResponse($result, 401);
-        }
-        return $response;
-    }
+	/**
+	 * authenticate and get access token
+	 * @NoAdminRequired
+	 */
+	public function getToken(string $login, string $password): DataResponse {
+		$result = $this->moodleAPIService->getToken($this->moodleUrl, $login, $password);
+		if (!isset($result['error'])) {
+			// we save the client ID and secret and give the client ID back to the UI
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $result['token']);
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'privatetoken', $result['privatetoken']);
+			$data = [
+				'token' => $result['token']
+			];
+			$response = new DataResponse($data);
+		} else {
+			$response = new DataResponse($result, 401);
+		}
+		return $response;
+	}
 
-    /**
-     * get moodle user avatar
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     */
-    public function getMoodleAvatar($url) {
-        $content = $this->moodleAPIService->getMoodleAvatar($url);
-        //return new DataResponse($content);
-        $response = new DataDisplayResponse($content);
-        $response->cacheFor(60*60*24);
-        return $response;
-    }
+	/**
+	 * get moodle user avatar
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getMoodleAvatar($url) {
+		$content = $this->moodleAPIService->getMoodleAvatar($url);
+		//return new DataResponse($content);
+		$response = new DataDisplayResponse($content);
+		$response->cacheFor(60*60*24);
+		return $response;
+	}
 
-    /**
-     * get notification list
-     * @NoAdminRequired
-     */
-    public function getNotifications(?int $recentSince) {
-        if ($this->accessToken === '') {
-            return new DataResponse(['error' => 'plop'], 400);
-        }
-        $result = $this->moodleAPIService->getNotifications($this->moodleUrl, $this->accessToken, $recentSince);
-        if (!isset($result['error'])) {
-            $response = new DataResponse($result);
-        } else {
-            $response = new DataResponse($result, 401);
-        }
-        return $response;
-    }
+	/**
+	 * get notification list
+	 * @NoAdminRequired
+	 */
+	public function getNotifications(?int $recentSince) {
+		if ($this->accessToken === '') {
+			return new DataResponse(['error' => 'plop'], 400);
+		}
+		$result = $this->moodleAPIService->getNotifications($this->moodleUrl, $this->accessToken, $recentSince);
+		if (!isset($result['error'])) {
+			$response = new DataResponse($result);
+		} else {
+			$response = new DataResponse($result, 401);
+		}
+		return $response;
+	}
 
 }

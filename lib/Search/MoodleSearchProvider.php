@@ -111,8 +111,8 @@ class MoodleSearchProvider implements IProvider {
 
 		$resultBills = [];
 
-        $moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
-        $accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);

@@ -50,8 +50,8 @@ class MoodleWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-        return $this->l10n->t('Moodle notifications');
-        }
+		return $this->l10n->t('Moodle notifications');
+		}
 
 	/**
 	 * @inheritDoc
@@ -71,14 +71,14 @@ class MoodleWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getUrl(): ?string {
-		return \OC::$server->getURLGenerator()->linkToRoute('settings.PersonalSettings.index', ['section' => 'linked-accounts']);
+		return \OC::$server->getURLGenerator()->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function load(): void {
-        \OC_Util::addScript(Application::APP_ID, Application::APP_ID . '-dashboard');
-        \OC_Util::addStyle(Application::APP_ID, 'dashboard');
-    }
+		\OC_Util::addScript(Application::APP_ID, Application::APP_ID . '-dashboard');
+		\OC_Util::addStyle(Application::APP_ID, 'dashboard');
+	}
 }

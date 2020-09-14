@@ -4,62 +4,72 @@
 			<a class="icon icon-moodle" />
 			{{ t('integration_moodle', 'Moodle integration') }}
 		</h2>
-		<p class="settings-hint">
-			{{ t('integration_moodle', 'Your login and password are not stored. They are just used once to get an access token which will be used to interact with your Moodle account.') }}
+		<p v-if="!connected" class="settings-hint">
+			{{ t('integration_moodle', 'Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account.') }}
 		</p>
-		<div class="moodle-grid-form">
-			<label for="moodle-url">
-				<a class="icon icon-link" />
-				{{ t('integration_moodle', 'Moodle instance address') }}
-			</label>
-			<input id="moodle-url"
-				v-model="state.url"
-				type="text"
-				:placeholder="t('integration_moodle', 'Moodle instance URL')"
-				@input="onInput">
-			<label for="moodle-login">
-				<a class="icon icon-user" />
-				{{ t('integration_moodle', 'Moodle login') }}
-			</label>
-			<input id="moodle-login"
-				v-model="login"
-				type="text"
-				:placeholder="t('integration_moodle', 'Your user name')"
-				@keyup.enter="onValidate">
-			<label for="moodle-password">
-				<a class="icon icon-password" />
-				{{ t('integration_moodle', 'Moodle password') }}
-			</label>
-			<input id="moodle-password"
-				v-model="password"
-				type="password"
-				:placeholder="t('integration_moodle', 'Your password')"
-				@keyup.enter="onValidate">
-			<span />
-			<button @click="onValidate">
-				{{ t('integration_moodle', 'Get token') }}
+		<div id="moodle-content">
+			<div class="moodle-grid-form">
+				<label for="moodle-url">
+					<a class="icon icon-link" />
+					{{ t('integration_moodle', 'Moodle instance address') }}
+				</label>
+				<input id="moodle-url"
+					v-model="state.url"
+					type="text"
+					:disabled="connected === true"
+					:placeholder="t('integration_moodle', 'Moodle instance URL')"
+					@input="onInput">
+				<label
+					v-show="connected !== true"
+					for="moodle-login">
+					<a class="icon icon-user" />
+					{{ t('integration_moodle', 'Moodle login') }}
+				</label>
+				<input
+					v-show="connected !== true"
+					id="moodle-login"
+					v-model="login"
+					type="text"
+					:placeholder="t('integration_moodle', 'Your user name')"
+					@keyup.enter="onValidate">
+				<label
+					v-show="connected !== true"
+					for="moodle-password">
+					<a class="icon icon-password" />
+					{{ t('integration_moodle', 'Moodle password') }}
+				</label>
+				<input
+					v-show="connected !== true"
+					id="moodle-password"
+					v-model="password"
+					type="password"
+					:placeholder="t('integration_moodle', 'Your password')"
+					@keyup.enter="onValidate">
+			</div>
+			<button v-if="showConnect && !connected" @click="onValidate">
+				<span class="icon icon-external" />
+				{{ t('integration_moodle', 'Connect to Moodle') }}
 			</button>
-		</div>
-		<br>
-		<div class="moodle-grid-form">
-			<label for="moodle-token">
-				<a class="icon icon-category-auth" />
-				{{ t('integration_moodle', 'Moodle access token') }}
-			</label>
-			<input id="moodle-token"
-				v-model="state.token"
-				type="password"
-				:placeholder="t('integration_moodle', 'Authenticate with OAuth')"
-				@input="onInput">
-		</div>
-		<div id="moodle-search-block">
-			<input
-				id="search-moodle"
-				type="checkbox"
-				class="checkbox"
-				:checked="state.search_enabled"
-				@input="onSearchChange">
-			<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
+			<div v-if="connected" class="moodle-grid-form">
+				<label class="moodle-connected">
+					<a class="icon icon-checkmark-color" />
+					{{ t('integration_moodle', 'Connected as {user}', { user: state.user_name }) }}
+				</label>
+				<button id="moodle-rm-cred" @click="onLogoutClick">
+					<span class="icon icon-close" />
+					{{ t('integration_moodle', 'Disconnect from Moodle') }}
+				</button>
+				<span />
+			</div>
+			<div v-if="connected" id="moodle-search-block">
+				<input
+					id="search-moodle"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_enabled"
+					@input="onSearchChange">
+				<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
+			</div>
 		</div>
 	</div>
 </template>
@@ -87,13 +97,23 @@ export default {
 		}
 	},
 
-	watch: {
-	},
-
-	mounted() {
+	computed: {
+		showConnect() {
+			return this.login && this.login !== ''
+				&& this.password && this.password !== ''
+		},
+		connected() {
+			return this.state.token && this.state.token !== ''
+				&& this.state.url && this.state.url !== ''
+				&& this.state.user_name && this.state.user_name !== ''
+		},
 	},
 
 	methods: {
+		onLogoutClick() {
+			this.state.token = ''
+			this.saveOptions()
+		},
 		onSearchChange(e) {
 			this.state.search_enabled = e.target.checked
 			this.saveOptions()
@@ -142,6 +162,7 @@ export default {
 			axios.post(url, req)
 				.then((response) => {
 					this.state.token = response.data.token
+					this.state.user_name = response.data.user_name
 					this.password = ''
 					showSuccess(t('integration_moodle', 'Moodle access token successfully retrieved!'))
 				})
@@ -165,7 +186,6 @@ export default {
 
 <style scoped lang="scss">
 #moodle-search-block {
-	margin-left: 30px;
 	margin-top: 30px;
 }
 .moodle-grid-form label {
@@ -178,7 +198,6 @@ export default {
 	max-width: 600px;
 	display: grid;
 	grid-template: 1fr / 1fr 1fr;
-	margin-left: 30px;
 	button .icon {
 		margin-bottom: -1px;
 	}
@@ -198,5 +217,8 @@ export default {
 }
 body.dark .icon-moodle {
 	background-image: url(./../../img/app.svg);
+}
+#moodle-content {
+	margin-left: 40px;
 }
 </style>

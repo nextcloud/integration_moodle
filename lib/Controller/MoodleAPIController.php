@@ -81,8 +81,24 @@ class MoodleAPIController extends Controller {
 			// we save the client ID and secret and give the client ID back to the UI
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $result['token']);
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'privatetoken', $result['privatetoken']);
+			// get user info
+			$chosenName = $login;
+			$params = [
+				'wstoken' => $result['token'],
+				'wsfunction' => 'core_user_get_users_by_field',
+				'moodlewsrestformat' => 'json',
+				'field' => 'username',
+				'values' => [$login],
+			];
+			$info = $this->moodleAPIService->request($this->moodleUrl, 'webservice/rest/server.php', $params);
+			if (!isset($info['error']) && count($info) > 0) {
+				$fullName = $info[0]['fullname'];
+				$chosenName = $fullName ? $fullName : $login;
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $chosenName);
+			}
 			$data = [
-				'token' => $result['token']
+				'token' => $result['token'],
+				'user_name' => $chosenName,
 			];
 			$response = new DataResponse($data);
 		} else {

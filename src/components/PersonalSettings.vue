@@ -215,7 +215,7 @@ export default {
 	height: 23px;
 	margin-bottom: -4px;
 }
-body.dark .icon-moodle {
+body.theme--dark .icon-moodle {
 	background-image: url(./../../img/app.svg);
 }
 #moodle-content {

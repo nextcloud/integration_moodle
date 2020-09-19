@@ -90,9 +90,9 @@ export default {
 		},
 		emptyContentMessage() {
 			if (this.state === 'no-token') {
-				return t('integration_moodle', 'No Moodle account connected')
+				return t('integration_moodle', 'No Moodle account connected.')
 			} else if (this.state === 'error') {
-				return t('integration_moodle', 'Error connecting to Moodle')
+				return t('integration_moodle', 'Error connecting to Moodle.')
 			} else if (this.state === 'ok') {
 				return t('integration_moodle', 'No Moodle notifications!')
 			}

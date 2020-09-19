@@ -103,13 +103,12 @@ class MoodleSearchProvider implements IProvider {
 		$limit = $query->getLimit();
 		$term = $query->getTerm();
 		$offset = $query->getCursor();
+		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 		$thumbnailUrl = ($theme === 'dark') ?
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg') :
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
-
-		$resultBills = [];
 
 		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
@@ -119,6 +118,7 @@ class MoodleSearchProvider implements IProvider {
 		}
 
 		$searchResults = $this->service->search($moodleUrl, $accessToken, $term);
+		$searchResults = array_slice($searchResults, $offset, $limit);
 
 		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
 			return new MoodleSearchResultEntry(
@@ -134,7 +134,7 @@ class MoodleSearchProvider implements IProvider {
 		return SearchResult::paginated(
 			$this->getName(),
 			$formattedResults,
-			$query->getCursor() + count($formattedResults)
+			$offset + $limit
 		);
 	}
 

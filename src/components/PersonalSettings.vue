@@ -151,7 +151,7 @@ export default {
 				})
 				.catch((error) => {
 					showError(
-						t('integration_moodle', 'Failed to save Moodle options')
+						t('integration_moodle', 'Failed to save Moodle options.')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -178,7 +178,7 @@ export default {
 						errorText = ': ' + jsonError.error
 					}
 					showError(
-						t('integration_moodle', 'Failed to authenticate to Moodle')
+						t('integration_moodle', 'Failed to authenticate to Moodle.')
 						+ errorText
 					)
 				})

@@ -69,6 +69,11 @@
 					:checked="state.search_enabled"
 					@input="onSearchChange">
 				<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
+				<br><br>
+				<p class="settings-hint">
+					<span class="icon icon-details" />
+					{{ t('integration_moodle', 'Warning, everything you type in the search bar will be sent to your Moodle instance.') }}
+				</p>
 			</div>
 		</div>
 	</div>
@@ -220,5 +225,8 @@ body.theme--dark .icon-moodle {
 }
 #moodle-content {
 	margin-left: 40px;
+}
+#moodle-search-block .icon {
+	width: 22px;
 }
 </style>

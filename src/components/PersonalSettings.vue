@@ -70,7 +70,7 @@
 					@input="onSearchChange">
 				<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
 				<br><br>
-				<p class="settings-hint">
+				<p v-if="state.search_enabled" class="settings-hint">
 					<span class="icon icon-details" />
 					{{ t('integration_moodle', 'Warning, everything you type in the search bar will be sent to your Moodle instance.') }}
 				</p>

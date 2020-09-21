@@ -6,7 +6,7 @@
     "Moodle course" : "Kurs Moodle",
     "Bad credentials" : "Złe poświadczenia",
     "Connected accounts" : "Połączone konta",
-    "Moodle integration" : "Integracja z Moodle",
+    "Moodle integration" : "Integracja Moodle",
     "Integration of Moodle learning management system" : "Integracja systemu zarządzania nauką Moodle",
     "Moodle integration provides a dashboard widget displaying information about your courses." : "Integracja Moodle zapewnia widżet na pulpicie wyświetlający informacje o Twoich kursach.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Twoje hasło nie jest przechowywane. Jest użyte tylko raz, aby uzyskać token dostępu, który będzie używany do interakcji z Twoim kontem Moodle.",
@@ -20,8 +20,13 @@
     "Connected as {user}" : "Połączono jako {user}",
     "Disconnect from Moodle" : "Rozłącz się z Moodle",
     "Enable unified search for courses." : "Włącz ujednolicone wyszukiwanie kursów.",
+    "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Uwaga, wszystko, co wpiszesz w pasku wyszukiwania, zostanie wysłane do Twojej instancji Moodle.",
     "Moodle options saved." : "Opcje Moodle zostały zapisane.",
+    "Failed to save Moodle options." : "Nie udało się zapisać opcji Moodle.",
     "Moodle access token successfully retrieved!" : "Pomyślnie odzyskano token dostępu Moodle!",
+    "Failed to authenticate to Moodle." : "Nie udało się uwierzytelnić w Moodle.",
+    "No Moodle account connected." : "Brak połączonego konta Moodle.",
+    "Error connecting to Moodle." : "Błąd podczas łączenia się z Moodle.",
     "No Moodle notifications!" : "Brak powiadomień Moodle!",
     "Failed to get Moodle notifications." : "Nie udało się uzyskać powiadomień z Moodle."
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"

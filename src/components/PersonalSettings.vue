@@ -63,12 +63,20 @@
 			</div>
 			<div v-if="connected" id="moodle-search-block">
 				<input
-					id="search-moodle"
+					id="search-moodle-courses"
 					type="checkbox"
 					class="checkbox"
-					:checked="state.search_enabled"
-					@input="onSearchChange">
-				<label for="search-moodle">{{ t('integration_moodle', 'Enable unified search for courses.') }}</label>
+					:checked="state.search_courses_enabled"
+					@input="onSearchCoursesChange">
+				<label for="search-moodle-courses">{{ t('integration_moodle', 'Enable searching for courses') }}</label>
+				<br><br>
+				<input
+					id="search-moodle-modules"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_modules_enabled"
+					@input="onSearchModulesChange">
+				<label for="search-moodle-modules">{{ t('integration_moodle', 'Enable searching for course modules') }}</label>
 				<br><br>
 				<p v-if="state.search_enabled" class="settings-hint">
 					<span class="icon icon-details" />
@@ -119,8 +127,12 @@ export default {
 			this.state.token = ''
 			this.saveOptions()
 		},
-		onSearchChange(e) {
-			this.state.search_enabled = e.target.checked
+		onSearchCoursesChange(e) {
+			this.state.search_courses_enabled = e.target.checked
+			this.saveOptions()
+		},
+		onSearchModulesChange(e) {
+			this.state.search_modules_enabled = e.target.checked
 			this.saveOptions()
 		},
 		onInput() {
@@ -141,7 +153,8 @@ export default {
 				values: {
 					token: this.state.token,
 					url: this.state.url,
-					search_enabled: this.state.search_enabled ? '1' : '0',
+					search_modules_enabled: this.state.search_modules_enabled ? '1' : '0',
+					search_courses_enabled: this.state.search_courses_enabled ? '1' : '0',
 				},
 			}
 			const url = generateUrl('/apps/integration_moodle/config')

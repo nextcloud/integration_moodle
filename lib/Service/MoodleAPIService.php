@@ -103,7 +103,7 @@ class MoodleAPIService {
 		];
 	}
 
-	public function search(string $url, string $accessToken, string $query): array {
+	public function searchCourses(string $url, string $accessToken, string $query): array {
 		$params = [
 			'wstoken' => $accessToken,
 			'wsfunction' => 'core_course_search_courses',
@@ -115,7 +115,50 @@ class MoodleAPIService {
 		return $searchResult['courses'];
 	}
 
-	public function getMoodleAvatar($url) {
+	public function searchModules(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
+		$query = strtolower($query);
+		$params = [
+			'wstoken' => $accessToken,
+			'wsfunction' => 'core_course_search_courses',
+			'moodlewsrestformat' => 'json',
+			'criterianame' => 'search',
+			'criteriavalue' => '',
+		];
+		$courses = $this->request($url, 'webservice/rest/server.php', $params);
+		if ($courses['exception'] || $courses['error']) {
+			return $courses;
+		}
+		$modules = [];
+		foreach ($courses['courses'] as $course) {
+			$params = [
+				'wstoken' => $accessToken,
+				'wsfunction' => 'core_course_get_contents',
+				'moodlewsrestformat' => 'json',
+				'courseid' => $course['id'],
+			];
+			$sections = $this->request($url, 'webservice/rest/server.php', $params);
+			if ($sections['exception'] || $sections['error']) {
+				return $sections;
+			}
+			foreach ($sections as $k => $section) {
+				foreach ($section['modules'] as $k => $module) {
+					$moduleName = strtolower($module['name']);
+					if (strpos($moduleName, $query) !== false) {
+						$module['section_name'] = $section['name'];
+						$module['course_name'] = $course['displayname'];
+						$modules[] = $module;
+						if (count($modules) >= ($offset + $limit)) {
+							return array_slice($modules, $offset, $limit);
+						}
+					}
+				}
+			}
+		}
+
+		return array_slice($modules, $offset, $limit);
+	}
+
+	public function getMoodleAvatar(string $url): string {
 		$rawResult = $this->client->get($url)->getBody();
 		$success = preg_match('/<svg.*/', $rawResult, $matches);
 		//$result = $success === 1 ? $this->getBase64Svg($matches[0]) : $rawResult;

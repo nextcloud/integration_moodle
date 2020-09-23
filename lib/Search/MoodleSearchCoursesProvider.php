@@ -35,7 +35,7 @@ use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 
-class MoodleSearchProvider implements IProvider {
+class MoodleSearchCoursesProvider implements IProvider {
 
 	/** @var IAppManager */
 	private $appManager;
@@ -70,14 +70,14 @@ class MoodleSearchProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return 'moodle-search';
+		return 'moodle-search-courses';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('Moodle');
+		return $this->l10n->t('Moodle courses');
 	}
 
 	/**
@@ -112,12 +112,12 @@ class MoodleSearchProvider implements IProvider {
 
 		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
-		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchEnabled) {
+		$searchCoursesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_courses_enabled', '0') === '1';
+		if ($accessToken === '' || !$searchCoursesEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->search($moodleUrl, $accessToken, $term);
+		$searchResults = $this->service->searchCourses($moodleUrl, $accessToken, $term);
 		$searchResults = array_slice($searchResults, $offset, $limit);
 
 		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {

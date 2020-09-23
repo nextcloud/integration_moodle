@@ -112,7 +112,7 @@ class MoodleAPIController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 */
-	public function getMoodleAvatar($url) {
+	public function getMoodleAvatar(string $url): DataDisplayResponse {
 		$content = $this->moodleAPIService->getMoodleAvatar($url);
 		//return new DataResponse($content);
 		$response = new DataDisplayResponse($content);

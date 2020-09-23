@@ -43,13 +43,15 @@ class Personal implements ISettings {
     public function getForm() {
         $token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
         $url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
-        $searchEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '0');
+        $searchCoursesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_courses_enabled', '0');
+        $searchModulesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_modules_enabled', '0');
         $userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name', '');
 
         $userConfig = [
             'token' => $token,
             'url' => $url,
-            'search_enabled' => ($searchEnabled === '1'),
+            'search_courses_enabled' => ($searchCoursesEnabled === '1'),
+            'search_modules_enabled' => ($searchModulesEnabled === '1'),
             'user_name' => $userName,
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);

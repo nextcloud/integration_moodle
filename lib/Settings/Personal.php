@@ -45,6 +45,7 @@ class Personal implements ISettings {
         $url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
         $searchCoursesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_courses_enabled', '0');
         $searchModulesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_modules_enabled', '0');
+        $searchUpcomingEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_upcoming_enabled', '0');
         $userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name', '');
 
         $userConfig = [
@@ -52,6 +53,7 @@ class Personal implements ISettings {
             'url' => $url,
             'search_courses_enabled' => ($searchCoursesEnabled === '1'),
             'search_modules_enabled' => ($searchModulesEnabled === '1'),
+            'search_upcoming_enabled' => ($searchUpcomingEnabled === '1'),
             'user_name' => $userName,
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);

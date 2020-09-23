@@ -21,6 +21,7 @@ use OCA\Moodle\Controller\PageController;
 use OCA\Moodle\Dashboard\MoodleWidget;
 use OCA\Moodle\Search\MoodleSearchCoursesProvider;
 use OCA\Moodle\Search\MoodleSearchModulesProvider;
+use OCA\Moodle\Search\MoodleSearchUpcomingProvider;
 
 /**
  * Class Application
@@ -46,6 +47,7 @@ class Application extends App implements IBootstrap {
 		$context->registerDashboardWidget(MoodleWidget::class);
 		$context->registerSearchProvider(MoodleSearchCoursesProvider::class);
 		$context->registerSearchProvider(MoodleSearchModulesProvider::class);
+		$context->registerSearchProvider(MoodleSearchUpcomingProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {

@@ -78,6 +78,14 @@
 					@input="onSearchModulesChange">
 				<label for="search-moodle-modules">{{ t('integration_moodle', 'Enable searching for course modules') }}</label>
 				<br><br>
+				<input
+					id="search-moodle-upcoming"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_upcoming_enabled"
+					@input="onSearchUpcomingChange">
+				<label for="search-moodle-upcoming">{{ t('integration_moodle', 'Enable searching for upcoming events') }}</label>
+				<br><br>
 				<p v-if="state.search_enabled" class="settings-hint">
 					<span class="icon icon-details" />
 					{{ t('integration_moodle', 'Warning, everything you type in the search bar will be sent to your Moodle instance.') }}
@@ -135,6 +143,10 @@ export default {
 			this.state.search_modules_enabled = e.target.checked
 			this.saveOptions()
 		},
+		onSearchUpcomingChange(e) {
+			this.state.search_upcoming_enabled = e.target.checked
+			this.saveOptions()
+		},
 		onInput() {
 			const that = this
 			delay(function() {
@@ -155,6 +167,7 @@ export default {
 					url: this.state.url,
 					search_modules_enabled: this.state.search_modules_enabled ? '1' : '0',
 					search_courses_enabled: this.state.search_courses_enabled ? '1' : '0',
+					search_upcoming_enabled: this.state.search_upcoming_enabled ? '1' : '0',
 				},
 			}
 			const url = generateUrl('/apps/integration_moodle/config')

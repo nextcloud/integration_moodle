@@ -117,8 +117,10 @@ class MoodleSearchCoursesProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->searchCourses($moodleUrl, $accessToken, $term);
-		$searchResults = array_slice($searchResults, $offset, $limit);
+		$searchResults = $this->service->searchCourses($moodleUrl, $accessToken, $term, $offset, $limit);
+		if ($searchResults['error'] || $searchResults['exception']) {
+			return SearchResult::paginated($this->getName(), [], 0);
+		}
 
 		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
 			return new MoodleSearchResultEntry(

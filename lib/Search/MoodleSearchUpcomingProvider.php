@@ -35,7 +35,7 @@ use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 
-class MoodleSearchModulesProvider implements IProvider {
+class MoodleSearchUpcomingProvider implements IProvider {
 
 	/** @var IAppManager */
 	private $appManager;
@@ -70,14 +70,14 @@ class MoodleSearchModulesProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return 'moodle-search-modules';
+		return 'moodle-search-upcoming';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('Moodle course modules');
+		return $this->l10n->t('Moodle upcoming events');
 	}
 
 	/**
@@ -112,12 +112,12 @@ class MoodleSearchModulesProvider implements IProvider {
 
 		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
-		$searchModulesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_modules_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchModulesEnabled) {
+		$searchUpcomingEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_upcoming_enabled', '0') === '1';
+		if ($accessToken === '' || !$searchUpcomingEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->searchModules($moodleUrl, $accessToken, $term, $offset, $limit);
+		$searchResults = $this->service->searchUpcoming($moodleUrl, $accessToken, $term, $offset, $limit);
 		if ($searchResults['error'] || $searchResults['exception']) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
@@ -151,29 +151,22 @@ class MoodleSearchModulesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
-		return $this->truncate($entry['course_name'], 10) . '/' . $entry['section_name'];
-	}
-
-	private function truncate(string $s, int $len) {
-		return strlen($s) > $len
-			? substr($s, 0, $len) . '…'
-			: $s;
+		return $entry['course_name'];
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getLinkToMoodle(array $entry): string {
-		return $entry['url'];
+		return $entry['viewurl'];
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getThumbnailurl(array $entry, string $thumbnailUrl): string {
-		return $thumbnailUrl;
-		return $entry['modicon']
-			? $this->urlGenerator->linkToRoute('integration_moodle.moodleAPI.getMoodleAvatar', []) . '?url=' . urlencode($entry['modicon'])
+		return $entry['course'] && $entry['course']['courseimage']
+			? $entry['course']['courseimage']
 			: $thumbnailUrl;
 	}
 }

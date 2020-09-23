@@ -103,7 +103,7 @@ class MoodleAPIService {
 		];
 	}
 
-	public function searchCourses(string $url, string $accessToken, string $query): array {
+	public function searchCourses(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
 		$params = [
 			'wstoken' => $accessToken,
 			'wsfunction' => 'core_course_search_courses',
@@ -112,7 +112,10 @@ class MoodleAPIService {
 			'criteriavalue' => $query,
 		];
 		$searchResult = $this->request($url, 'webservice/rest/server.php', $params);
-		return $searchResult['courses'];
+		if ($searchResult['exception'] || $searchResult['error']) {
+			return $searchResult;
+		}
+		return array_slice($searchResult['courses'], $offset, $limit);
 	}
 
 	public function searchModules(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
@@ -156,6 +159,46 @@ class MoodleAPIService {
 		}
 
 		return array_slice($modules, $offset, $limit);
+	}
+
+	public function searchUpcoming(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
+		$query = strtolower($query);
+		$params = [
+			'wstoken' => $accessToken,
+			'wsfunction' => 'core_course_search_courses',
+			'moodlewsrestformat' => 'json',
+			'criterianame' => 'search',
+			'criteriavalue' => '',
+		];
+		$courses = $this->request($url, 'webservice/rest/server.php', $params);
+		if ($courses['exception'] || $courses['error']) {
+			return $courses;
+		}
+		$upcomings = [];
+		foreach ($courses['courses'] as $course) {
+			$params = [
+				'wstoken' => $accessToken,
+				'wsfunction' => 'core_calendar_get_calendar_upcoming_view',
+				'moodlewsrestformat' => 'json',
+				'courseid' => $course['id'],
+			];
+			$results = $this->request($url, 'webservice/rest/server.php', $params);
+			if ($results['exception'] || $results['error']) {
+				return $results;
+			}
+			foreach ($results['events'] as $k => $upcoming) {
+				$upcomingName = strtolower($upcoming['name']);
+				if (strpos($upcomingName, $query) !== false) {
+					$upcoming['course_name'] = $course['displayname'];
+					$upcomings[] = $upcoming;
+					if (count($upcomings) >= ($offset + $limit)) {
+						return array_slice($upcomings, $offset, $limit);
+					}
+				}
+			}
+		}
+
+		return array_slice($upcomings, $offset, $limit);
 	}
 
 	public function getMoodleAvatar(string $url): string {

@@ -141,6 +141,7 @@ class MoodleSearchUpcomingProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
@@ -148,6 +149,7 @@ class MoodleSearchUpcomingProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
@@ -155,6 +157,7 @@ class MoodleSearchUpcomingProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getLinkToMoodle(array $entry): string {
@@ -162,6 +165,8 @@ class MoodleSearchUpcomingProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
+	 * @param string $thumbnailUrl
 	 * @return string
 	 */
 	protected function getThumbnailurl(array $entry, string $thumbnailUrl): string {

@@ -68,50 +68,15 @@ class ConfigController extends Controller {
 	/**
 	 * set config values
 	 * @NoAdminRequired
+	 *
+	 * @param array $values
+	 * @return DataResponse
 	 */
-	public function setConfig($values) {
+	public function setConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
 		}
 		$response = new DataResponse(1);
 		return $response;
-	}
-
-	/**
-	 * receive oauth code and get oauth access token
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
-	public function oauthRedirect($code = '') {
-		$moodleUrl = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
-		$clientID = $this->config->getUserValue($this->userId, Application::APP_ID, 'client_id', '');
-		$clientSecret = $this->config->getUserValue($this->userId, Application::APP_ID, 'client_secret', '');
-
-		if ($moodleUrl !== '' and $clientID !== '' and $clientSecret !== '' and $code !== '') {
-			$redirect_uri = $this->urlGenerator->linkToRouteAbsolute('integration_moodle.config.oauthRedirect');
-			$result = $this->moodleAPIService->requestOAuthAccessToken($moodleUrl, [
-				'client_id' => $clientID,
-				'client_secret' => $clientSecret,
-				'code' => $code,
-				'redirect_uri' => $redirect_uri,
-				'grant_type' => 'authorization_code',
-				'scope' => 'read write follow'
-			], 'POST');
-			if (is_array($result) and isset($result['access_token'])) {
-				$accessToken = $result['access_token'];
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
-				return new RedirectResponse(
-					$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-					'?moodleToken=success'
-				);
-			}
-			$result = $this->l->t('Error getting OAuth access token') . ' ' . $result;
-		} else {
-			$result = $this->l->t('Error during OAuth exchanges');
-		}
-		return new RedirectResponse(
-			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-			'?moodleToken=error&message=' . urlencode($result)
-		);
 	}
 }

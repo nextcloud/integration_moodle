@@ -66,14 +66,20 @@ class MoodleAPIController extends Controller {
 	/**
 	 * get notification list
 	 * @NoAdminRequired
+	 *
+	 * @return DataResponse
 	 */
-	public function getMoodleUrl() {
+	public function getMoodleUrl(): DataResponse {
 		return new DataResponse($this->moodleUrl);
 	}
 
 	/**
 	 * authenticate and get access token
 	 * @NoAdminRequired
+	 *
+	 * @param string $login
+	 * @param string $password
+	 * @return DataResponse
 	 */
 	public function getToken(string $login, string $password): DataResponse {
 		$result = $this->moodleAPIService->getToken($this->moodleUrl, $login, $password);
@@ -111,6 +117,9 @@ class MoodleAPIController extends Controller {
 	 * get moodle user avatar
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 *
+	 * @param string $url
+	 * @return DataDisplayResponse
 	 */
 	public function getMoodleAvatar(string $url): DataDisplayResponse {
 		$content = $this->moodleAPIService->getMoodleAvatar($url);
@@ -123,10 +132,13 @@ class MoodleAPIController extends Controller {
 	/**
 	 * get notification list
 	 * @NoAdminRequired
+	 *
+	 * @param ?int $recentSince
+	 * @return DataResponse
 	 */
-	public function getNotifications(?int $recentSince) {
+	public function getNotifications(?int $recentSince = null): DataResponse {
 		if ($this->accessToken === '') {
-			return new DataResponse(['error' => 'plop'], 400);
+			return new DataResponse(['error' => 'no-token'], 400);
 		}
 		$result = $this->moodleAPIService->getNotifications($this->moodleUrl, $this->accessToken, $recentSince);
 		if (!isset($result['error'])) {

@@ -141,6 +141,7 @@ class MoodleSearchModulesProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
@@ -148,19 +149,26 @@ class MoodleSearchModulesProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
 		return $this->truncate($entry['course_name'], 10) . '/' . $entry['section_name'];
 	}
 
-	private function truncate(string $s, int $len) {
+	/**
+	 * @param string $s
+	 * @param int $len
+	 * @return string
+	 */
+	private function truncate(string $s, int $len): string {
 		return strlen($s) > $len
 			? substr($s, 0, $len) . '…'
 			: $s;
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getLinkToMoodle(array $entry): string {
@@ -168,6 +176,8 @@ class MoodleSearchModulesProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
+	 * @param string $thumbnailUrl
 	 * @return string
 	 */
 	protected function getThumbnailurl(array $entry, string $thumbnailUrl): string {

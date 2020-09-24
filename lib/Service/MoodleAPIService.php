@@ -38,6 +38,12 @@ class MoodleAPIService {
 		$this->client = $clientService->newClient();
 	}
 
+	/**
+	 * @param string $url
+	 * @param string $accessToken
+	 * @param ?int $recentSince
+	 * @return array
+	 */
 	public function getNotifications(string $url, string $accessToken, ?int $recentSince): array {
 		$params = [
 			'wstoken' => $accessToken,
@@ -61,7 +67,7 @@ class MoodleAPIService {
 		$courseIds = [];
 		foreach ($recentItems as $k => $recentItem) {
 			if (isset($recentItem['courseid']) && !in_array($recentItem['courseid'], $courseIds)) {
-				array_push($courseIds, $recentItem['courseid']);
+				$courseIds[] = $recentItem['courseid'];
 			}
 			$recentItems[$k]['time'] = $recentItem['timeaccess'];
 			$recentItems[$k]['type'] = 'recent';
@@ -103,7 +109,15 @@ class MoodleAPIService {
 		];
 	}
 
-	public function searchCourses(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
+	/**
+	 * @param string $url
+	 * @param string $accessToken
+	 * @param string $query
+	 * @param int $offset
+	 * @param int $limit
+	 * @return array
+	 */
+	public function searchCourses(string $url, string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'wstoken' => $accessToken,
 			'wsfunction' => 'core_course_search_courses',
@@ -161,7 +175,15 @@ class MoodleAPIService {
 		return array_slice($modules, $offset, $limit);
 	}
 
-	public function searchUpcoming(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
+	/**
+	 * @param string $url
+	 * @param string $accessToken
+	 * @param string $query
+	 * @param int $offset
+	 * @param int $limit
+	 * @return array
+	 */
+	public function searchUpcoming(string $url, string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
 		$query = strtolower($query);
 		$params = [
 			'wstoken' => $accessToken,
@@ -201,6 +223,10 @@ class MoodleAPIService {
 		return array_slice($upcomings, $offset, $limit);
 	}
 
+	/**
+	 * @param string $url
+	 * @return string
+	 */
 	public function getMoodleAvatar(string $url): string {
 		$rawResult = $this->client->get($url)->getBody();
 		$success = preg_match('/<svg.*/', $rawResult, $matches);
@@ -219,6 +245,13 @@ class MoodleAPIService {
 		return 'data:image/svg+xml;base64,' . base64_encode($svgString);
 	}
 
+	/**
+	 * @param string $url
+	 * @param string $endPoint
+	 * @param array $params
+	 * @param string $method
+	 * @return array
+	 */
 	public function request(string $url, string $endPoint, array $params = [], string $method = 'GET'): array {
 		try {
 			$url = $url . '/' . $endPoint;
@@ -270,6 +303,12 @@ class MoodleAPIService {
 		}
 	}
 
+	/**
+	 * @param string $moodleUrl
+	 * @param string $login
+	 * @param string $password
+	 * @return array
+	 */
 	public function getToken(string $moodleUrl, string $login, string $password): array {
 		$params = [
 			'username' => $login,

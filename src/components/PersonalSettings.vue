@@ -173,7 +173,7 @@ export default {
 			const url = generateUrl('/apps/integration_moodle/config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_moodle', 'Moodle options saved.'))
+					showSuccess(t('integration_moodle', 'Moodle options saved'))
 				})
 				.catch((error) => {
 					showError(

@@ -3,7 +3,8 @@
     <id>integration_moodle</id>
     <name>Moodle integration</name>
     <summary>Integration of Moodle learning management system</summary>
-    <description><![CDATA[Moodle integration provides a dashboard widget displaying information about your courses.]]></description>
+    <description><![CDATA[Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.
+    It also allows you to search for content in Moodle.]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>

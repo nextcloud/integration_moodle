@@ -195,7 +195,7 @@ export default {
 					this.state.token = response.data.token
 					this.state.user_name = response.data.user_name
 					this.password = ''
-					showSuccess(t('integration_moodle', 'Moodle access token successfully retrieved!'))
+					showSuccess(t('integration_moodle', 'Successfully connected to Moodle!'))
 				})
 				.catch((error) => {
 					let errorText = ''

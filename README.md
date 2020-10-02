@@ -1,7 +1,4 @@
 # Moodle Nextcloud application
 
-This app adds a dashboard widget to see your main Moodle notifications.
-
-## Releases
-
-...
+🎓 Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.
+It also allows you to search for content in Moodle.

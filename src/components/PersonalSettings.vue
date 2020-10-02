@@ -46,7 +46,9 @@
 					:placeholder="t('integration_moodle', 'Your password')"
 					@keyup.enter="onValidate">
 			</div>
-			<button v-if="showConnect && !connected" @click="onValidate">
+			<button v-if="showConnect && !connected"
+				:class="{ loading: connecting }"
+				@click="onValidate">
 				<span class="icon icon-external" />
 				{{ t('integration_moodle', 'Connect to Moodle') }}
 			</button>
@@ -115,6 +117,7 @@ export default {
 			state: loadState('integration_moodle', 'user-config'),
 			login: '',
 			password: '',
+			connecting: false,
 		}
 	},
 
@@ -133,27 +136,27 @@ export default {
 	methods: {
 		onLogoutClick() {
 			this.state.token = ''
-			this.saveOptions()
+			this.saveOptions(true)
 		},
 		onSearchCoursesChange(e) {
 			this.state.search_courses_enabled = e.target.checked
-			this.saveOptions()
+			this.saveOptions(false)
 		},
 		onSearchModulesChange(e) {
 			this.state.search_modules_enabled = e.target.checked
-			this.saveOptions()
+			this.saveOptions(false)
 		},
 		onSearchUpcomingChange(e) {
 			this.state.search_upcoming_enabled = e.target.checked
-			this.saveOptions()
+			this.saveOptions(false)
 		},
 		onInput() {
 			const that = this
 			delay(function() {
-				that.saveOptions()
+				that.saveOptions(true)
 			}, 2000)()
 		},
-		saveOptions() {
+		saveOptions(authOptions) {
 			if (!this.state.url.startsWith('https://')) {
 				if (this.state.url.startsWith('http://')) {
 					this.state.url = this.state.url.replace('http://', 'https://')
@@ -161,14 +164,18 @@ export default {
 					this.state.url = 'https://' + this.state.url
 				}
 			}
-			const req = {
-				values: {
+			const req = {}
+			if (authOptions) {
+				req.values = {
 					token: this.state.token,
 					url: this.state.url,
+				}
+			} else {
+				req.values = {
 					search_modules_enabled: this.state.search_modules_enabled ? '1' : '0',
 					search_courses_enabled: this.state.search_courses_enabled ? '1' : '0',
 					search_upcoming_enabled: this.state.search_upcoming_enabled ? '1' : '0',
-				},
+				}
 			}
 			const url = generateUrl('/apps/integration_moodle/config')
 			axios.put(url, req)
@@ -185,6 +192,7 @@ export default {
 				})
 		},
 		onValidate() {
+			this.connecting = true
 			const req = {
 				login: this.login,
 				password: this.password,
@@ -209,6 +217,7 @@ export default {
 					)
 				})
 				.then(() => {
+					this.connecting = false
 				})
 		},
 	},

@@ -97,7 +97,7 @@ class MoodleAPIService {
 
 		// filter by date
 		if (!is_null($recentSince)) {
-			$recentItems = array_filter($recentItems, function($elem) use ($since) {
+			$recentItems = array_filter($recentItems, function($elem) use ($recentSince) {
 				$ts = intval($elem['time']);
 				return $ts > $recentSince;
 			});

@@ -25,6 +25,7 @@
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Uyarı, arama çubuğuna yazdığınız her şey Moodle kopyanıza gönderilecek.",
     "Moodle options saved" : "Moodle ayarları kaydedildi",
     "Failed to save Moodle options" : "Moodle ayarları kaydedilemedi",
+    "Successfully connected to Moodle!" : "Moodle ile bağlantı kuruldu!",
     "Failed to authenticate to Moodle" : "Moodle kimliği doğrulanamadı",
     "No Moodle account connected" : "Bağlı bir Moodle hesabı yok",
     "Error connecting to Moodle" : "Moodle bağlantısı kurulurken sorun çıktı",

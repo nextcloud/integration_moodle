@@ -10,6 +10,7 @@ OC.L10N.register(
     "Connected accounts" : "Cuentas conectadas",
     "Moodle integration" : "Integración con Moodle",
     "Integration of Moodle learning management system" : "Integración con el sistema de gestión de aprendizaje Moodle",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "La integración con Moodle ofrece un widget que muestra inforación sobre tus cursos recientes y próximos eventos. También te permite buscar contenido en Moodle.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Tu contraseña no es almacenada. Solo se usa una vez para conseguir un token de acceso que se usará para interactuar con tu cuenta de Moodle.",
     "Moodle instance address" : "Dirección de la instancia de Moodle",
     "Moodle instance URL" : "URL de la instancia de Moodle",
@@ -24,10 +25,13 @@ OC.L10N.register(
     "Enable searching for course modules" : "Activar la búsqueda para módulos de curso",
     "Enable searching for upcoming events" : "Activar la búsqueda de eventos próximos",
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Cuidado, todo lo que escribas en la barra de búsqueda será enviado a tu instancia de Moodle.",
+    "Moodle options saved" : "Opciones de Moodle guardadas",
     "Failed to save Moodle options" : "Fallo al guardar las opciones de Moodle",
+    "Successfully connected to Moodle!" : "Conectado a Moodle con éxito.",
     "Failed to authenticate to Moodle" : "Fallo al autenticarse ante Moodle",
     "No Moodle account connected" : "No hay ninguna cuenta de Moodle conectada",
     "Error connecting to Moodle" : "Error al conectar con Moodle",
-    "No Moodle notifications!" : "No hay notificaciones de Moodle."
+    "No Moodle notifications!" : "No hay notificaciones de Moodle.",
+    "Failed to get Moodle notifications" : "Fallo al obtener las notificaciones de Moodle"
 },
 "nplurals=2; plural=(n != 1);");

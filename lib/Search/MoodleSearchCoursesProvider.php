@@ -129,7 +129,7 @@ class MoodleSearchCoursesProvider implements IProvider {
 				$this->getSubline($entry),
 				$this->getLinkToMoodle($entry, $moodleUrl),
 				'',
-				true
+				false
 			);
 		}, $searchResults);
 

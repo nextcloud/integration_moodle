@@ -27,6 +27,7 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Varování – cokoli zadáte do kolonky vyhledávání bude odesláno vámi využívané instanci Moodle.",
     "Moodle options saved" : "Předvolby pro Moodle uloženy",
     "Failed to save Moodle options" : "Nepodařilo se uložit předvolby pro Moodle",
+    "Successfully connected to Moodle!" : "Úspěšně spojeno s Moodle!",
     "Failed to authenticate to Moodle" : "Nepodařilo se ověřit vůči Moodle",
     "No Moodle account connected" : "Nepřipojen žádný Moodle účet",
     "Error connecting to Moodle" : "Chyba při připojování se k Moodle",

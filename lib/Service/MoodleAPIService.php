@@ -12,7 +12,7 @@
 namespace OCA\Moodle\Service;
 
 use OCP\IL10N;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 
 use OCA\Moodle\AppInfo\Application;
@@ -27,7 +27,7 @@ class MoodleAPIService {
 	 */
 	public function __construct (
 		string $appName,
-		ILogger $logger,
+		LoggerInterface $logger,
 		IL10N $l10n,
 		IClientService $clientService
 	) {

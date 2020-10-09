@@ -1,0 +1,6 @@
+{ "translations": {
+    "Bad credentials" : "Εσφαλμένα διαπιστευτήρια",
+    "Connected accounts" : "Συνδεδεμένοι λογαριασμοί",
+    "Connected as {user}" : "Συνδεδεμένος ως {user}"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -58,7 +58,7 @@ export default {
 
 	computed: {
 		showMoreUrl() {
-			return this.moodleUrl + '/message/output/popup/notifications.php'
+			return this.moodleUrl + '/my'
 		},
 		notifications() {
 			return this.upcomingEvents.concat(this.recentItems)

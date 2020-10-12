@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.3 – 2020-10-12
+### Changed
+- 'more' link now points to Moodle's dashboard
+- various small design/code improvements
+
 ## 0.0.2 – 2020-10-02
 ### Added
 - lots of translations

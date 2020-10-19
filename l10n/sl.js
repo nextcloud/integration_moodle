@@ -1,8 +1,32 @@
 OC.L10N.register(
     "integration_moodle",
     {
+    "Moodle notifications" : "Obvestila Moodle",
+    "Moodle courses" : "Dejavnosti Moodle",
+    "Moodle course" : "Dejavnost Moodle",
+    "Moodle course modules" : "Moduli dejavnosti Moodle",
+    "Moodle upcoming events" : "Prihajajoči dogodki Moodle",
     "Bad credentials" : "Neustrezna poverila",
     "Connected accounts" : "Povezani računi",
-    "Connected as {user}" : "Poveži kot {user}"
+    "Moodle integration" : "Podpora za račune Moodle",
+    "Integration of Moodle learning management system" : "Podpora za dostop do sistema za vodenje učnega procesa Moodle",
+    "Moodle instance address" : "Naslov povezave Moodle",
+    "Moodle instance URL" : "Naslov URL povezave Moodle",
+    "Moodle login" : "Prijava Moodle",
+    "Your user name" : "Uporabniško ime",
+    "Moodle password" : "Geslo Moodle",
+    "Your password" : "Geslo",
+    "Connect to Moodle" : "Vzpostavi povezavo s strežnikom Moodle",
+    "Connected as {user}" : "Poveži kot {user}",
+    "Disconnect from Moodle" : "Prekini povezavo z Moodle",
+    "Enable searching for courses" : "Omogoči iskanje med dejavnostmi",
+    "Enable searching for upcoming events" : "Omogoči iskanje med prihajajočimi dogodki",
+    "Moodle options saved" : "Nastavitve Moodle so shranjene",
+    "Failed to save Moodle options" : "Shranjevanje nastavitev Moodle je spodletelo",
+    "Successfully connected to Moodle!" : "Povezava z Moodle je uspešno vzpostavljena!",
+    "No Moodle account connected" : "Ni povezanega računa Moodle",
+    "Error connecting to Moodle" : "Napaka povezovanja s spletiščem Moodle",
+    "No Moodle notifications!" : "Ni obvestil Moodle!",
+    "Failed to get Moodle notifications" : "Pridobivanje obvestil Moodle je spodletelo"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

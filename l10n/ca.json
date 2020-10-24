@@ -22,10 +22,13 @@
     "Enable searching for course modules" : "Habilita la cerca de mòduls de curs",
     "Enable searching for upcoming events" : "Habilita la cerca d'esdeveniments propers",
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Avis, tot el que escriviu a la barra de cerca s'enviarà a la instància de Moodle.",
+    "Moodle options saved" : "Opcions de Moodle guardades",
     "Failed to save Moodle options" : "No s'han pogut desar les opcions del Moodle",
+    "Successfully connected to Moodle!" : "S'ha connectat a Moodle amb èxit!",
     "Failed to authenticate to Moodle" : "No s'ha pogut autenticar a Moodle",
     "No Moodle account connected" : "No s'ha connectat cap compte de Moodle",
     "Error connecting to Moodle" : "S'ha produït un error en connectar-se a Moodle",
-    "No Moodle notifications!" : "No hi ha notificacions de Moodle!"
+    "No Moodle notifications!" : "No hi ha notificacions de Moodle!",
+    "Failed to get Moodle notifications" : "No s'han pogut rebre les notificacions de Moodle"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

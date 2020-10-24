@@ -8,7 +8,7 @@ OC.L10N.register(
     "Moodle upcoming events" : "Prihajajoči dogodki Moodle",
     "Bad credentials" : "Neustrezna poverila",
     "Connected accounts" : "Povezani računi",
-    "Moodle integration" : "Podpora za račune Moodle",
+    "Moodle integration" : "Podpora Moodle",
     "Integration of Moodle learning management system" : "Podpora za dostop do sistema za vodenje učnega procesa Moodle",
     "Moodle instance address" : "Naslov povezave Moodle",
     "Moodle instance URL" : "Naslov URL povezave Moodle",

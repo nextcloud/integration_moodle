@@ -167,12 +167,8 @@ export default {
 		},
 		onInput() {
 			delay(() => {
-				if (!this.state.url.startsWith('https://')) {
-					if (this.state.url.startsWith('http://')) {
-						this.state.url = this.state.url.replace('http://', 'https://')
-					} else {
-						this.state.url = 'https://' + this.state.url
-					}
+				if (!this.state.url.startsWith('https://') && !this.state.url.startsWith('http://')) {
+					this.state.url = 'https://' + this.state.url.replace(/^[a-zA-Z]*:\/\//, '')
 				}
 				this.saveOptions({ url: this.state.url })
 			}, 2000)()

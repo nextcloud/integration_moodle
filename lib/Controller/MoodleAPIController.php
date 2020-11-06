@@ -100,11 +100,10 @@ class MoodleAPIController extends Controller {
 			$info = $this->moodleAPIService->request($this->moodleUrl, 'webservice/rest/server.php', $this->checkSsl, $params);
 			if (!isset($info['error']) && count($info) > 0) {
 				$fullName = $info[0]['fullname'];
-				$chosenName = $fullName ? $fullName : $login;
+				$chosenName = $fullName ?: $login;
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $chosenName);
 			}
 			$data = [
-				'token' => $result['token'],
 				'user_name' => $chosenName,
 			];
 			$response = new DataResponse($data);

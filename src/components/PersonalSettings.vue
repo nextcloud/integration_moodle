@@ -136,8 +136,7 @@ export default {
 				&& this.password && this.password !== ''
 		},
 		connected() {
-			return this.state.token && this.state.token !== ''
-				&& this.state.url && this.state.url !== ''
+			return this.state.url && this.state.url !== ''
 				&& this.state.user_name && this.state.user_name !== ''
 		},
 		searchEnabled() {
@@ -147,52 +146,40 @@ export default {
 
 	methods: {
 		onLogoutClick() {
-			this.state.token = ''
-			this.saveOptions(true)
+			this.state.user_name = ''
+			this.saveOptions({ user_name: '', token: '' })
 		},
 		onCheckSslChange(e) {
 			this.state.check_ssl = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ check_ssl: this.state.check_ssl ? '1' : '0' })
 		},
 		onSearchCoursesChange(e) {
 			this.state.search_courses_enabled = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ search_courses_enabled: this.state.search_courses_enabled ? '1' : '0' })
 		},
 		onSearchModulesChange(e) {
 			this.state.search_modules_enabled = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ search_modules_enabled: this.state.search_modules_enabled ? '1' : '0' })
 		},
 		onSearchUpcomingChange(e) {
 			this.state.search_upcoming_enabled = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ search_upcoming_enabled: this.state.search_upcoming_enabled ? '1' : '0' })
 		},
 		onInput() {
-			const that = this
-			delay(function() {
-				that.saveOptions(true)
+			delay(() => {
+				if (!this.state.url.startsWith('https://')) {
+					if (this.state.url.startsWith('http://')) {
+						this.state.url = this.state.url.replace('http://', 'https://')
+					} else {
+						this.state.url = 'https://' + this.state.url
+					}
+				}
+				this.saveOptions({ url: this.state.url })
 			}, 2000)()
 		},
-		saveOptions(authOptions) {
-			if (!this.state.url.startsWith('https://')) {
-				if (this.state.url.startsWith('http://')) {
-					this.state.url = this.state.url.replace('http://', 'https://')
-				} else {
-					this.state.url = 'https://' + this.state.url
-				}
-			}
-			const req = {}
-			if (authOptions) {
-				req.values = {
-					token: this.state.token,
-					url: this.state.url,
-				}
-			} else {
-				req.values = {
-					search_modules_enabled: this.state.search_modules_enabled ? '1' : '0',
-					search_courses_enabled: this.state.search_courses_enabled ? '1' : '0',
-					search_upcoming_enabled: this.state.search_upcoming_enabled ? '1' : '0',
-					check_ssl: this.state.check_ssl ? '1' : '0',
-				}
+		saveOptions(values) {
+			const req = {
+				values,
 			}
 			const url = generateUrl('/apps/integration_moodle/config')
 			axios.put(url, req)
@@ -217,14 +204,13 @@ export default {
 			const url = generateUrl('/apps/integration_moodle/get-token')
 			axios.post(url, req)
 				.then((response) => {
-					this.state.token = response.data.token
 					this.state.user_name = response.data.user_name
 					this.password = ''
 					showSuccess(t('integration_moodle', 'Successfully connected to Moodle!'))
 				})
 				.catch((error) => {
 					let errorText = ''
-					if (error.response && error.response.request && error.response.request.responseText) {
+					if (error.response?.request?.responseText) {
 						const jsonError = JSON.parse(error.response.request.responseText)
 						errorText = ': ' + jsonError.error
 					}

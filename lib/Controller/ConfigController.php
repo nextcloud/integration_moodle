@@ -76,6 +76,11 @@ class ConfigController extends Controller {
 		foreach ($values as $key => $value) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
 		}
+		if (isset($values['token']) && $values['token'] === '') {
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token');
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'privatetoken');
+		}
 		$response = new DataResponse(1);
 		return $response;
 	}

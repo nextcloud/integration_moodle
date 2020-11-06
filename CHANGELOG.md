@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.5 – 2020-11-06
+### Changed
+- don't force HTTPS anymore
+
 ## 0.0.4 – 2020-11-06
 ### Added
 - option to disabled SSL check

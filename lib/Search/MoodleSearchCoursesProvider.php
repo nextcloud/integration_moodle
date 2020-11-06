@@ -112,12 +112,13 @@ class MoodleSearchCoursesProvider implements IProvider {
 
 		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$checkSsl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'check_ssl', '1') === '1';
 		$searchCoursesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_courses_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchCoursesEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->searchCourses($moodleUrl, $accessToken, $term, $offset, $limit);
+		$searchResults = $this->service->searchCourses($moodleUrl, $accessToken, $checkSsl, $term, $offset, $limit);
 		if ($searchResults['error'] || $searchResults['exception']) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}

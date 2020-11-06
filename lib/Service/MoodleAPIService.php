@@ -44,13 +44,13 @@ class MoodleAPIService {
 	 * @param ?int $recentSince
 	 * @return array
 	 */
-	public function getNotifications(string $url, string $accessToken, ?int $recentSince): array {
+	public function getNotifications(string $url, string $accessToken, bool $checkSsl, ?int $recentSince): array {
 		$params = [
 			'wstoken' => $accessToken,
 			'wsfunction' => 'block_recentlyaccesseditems_get_recent_items',
 			'moodlewsrestformat' => 'json',
 		];
-		$recentItems = $this->request($url, 'webservice/rest/server.php', $params);
+		$recentItems = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 
 		if (isset($recentItems['error'])) {
 			return $recentItems;
@@ -78,7 +78,7 @@ class MoodleAPIService {
 		foreach ($courseIds as $courseId) {
 			$params['wsfunction'] = 'core_calendar_get_calendar_upcoming_view';
 			$params['courseid'] = $courseId;
-			$oneRes = $this->request($url, 'webservice/rest/server.php', $params);
+			$oneRes = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 			if (!isset($oneRes['error']) && isset($oneRes['events'])) {
 				$upcomingEvents = array_merge($upcomingEvents, $oneRes['events']);
 			}
@@ -117,7 +117,7 @@ class MoodleAPIService {
 	 * @param int $limit
 	 * @return array
 	 */
-	public function searchCourses(string $url, string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
+	public function searchCourses(string $url, string $accessToken, bool $checkSsl, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'wstoken' => $accessToken,
 			'wsfunction' => 'core_course_search_courses',
@@ -125,14 +125,14 @@ class MoodleAPIService {
 			'criterianame' => 'search',
 			'criteriavalue' => $query,
 		];
-		$searchResult = $this->request($url, 'webservice/rest/server.php', $params);
+		$searchResult = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 		if ($searchResult['exception'] || $searchResult['error']) {
 			return $searchResult;
 		}
 		return array_slice($searchResult['courses'], $offset, $limit);
 	}
 
-	public function searchModules(string $url, string $accessToken, string $query, ?int $offset = 0, ?int $limit = 5): array {
+	public function searchModules(string $url, string $accessToken, bool $checkSsl, string $query, ?int $offset = 0, ?int $limit = 5): array {
 		$query = strtolower($query);
 		$params = [
 			'wstoken' => $accessToken,
@@ -141,7 +141,7 @@ class MoodleAPIService {
 			'criterianame' => 'search',
 			'criteriavalue' => '',
 		];
-		$courses = $this->request($url, 'webservice/rest/server.php', $params);
+		$courses = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 		if ($courses['exception'] || $courses['error']) {
 			return $courses;
 		}
@@ -153,7 +153,7 @@ class MoodleAPIService {
 				'moodlewsrestformat' => 'json',
 				'courseid' => $course['id'],
 			];
-			$sections = $this->request($url, 'webservice/rest/server.php', $params);
+			$sections = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 			if ($sections['exception'] || $sections['error']) {
 				return $sections;
 			}
@@ -183,7 +183,7 @@ class MoodleAPIService {
 	 * @param int $limit
 	 * @return array
 	 */
-	public function searchUpcoming(string $url, string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
+	public function searchUpcoming(string $url, string $accessToken, bool $checkSsl, string $query, int $offset = 0, int $limit = 5): array {
 		$query = strtolower($query);
 		$params = [
 			'wstoken' => $accessToken,
@@ -192,7 +192,7 @@ class MoodleAPIService {
 			'criterianame' => 'search',
 			'criteriavalue' => '',
 		];
-		$courses = $this->request($url, 'webservice/rest/server.php', $params);
+		$courses = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 		if ($courses['exception'] || $courses['error']) {
 			return $courses;
 		}
@@ -204,7 +204,7 @@ class MoodleAPIService {
 				'moodlewsrestformat' => 'json',
 				'courseid' => $course['id'],
 			];
-			$results = $this->request($url, 'webservice/rest/server.php', $params);
+			$results = $this->request($url, 'webservice/rest/server.php', $checkSsl, $params);
 			if ($results['exception'] || $results['error']) {
 				return $results;
 			}
@@ -227,8 +227,12 @@ class MoodleAPIService {
 	 * @param string $url
 	 * @return string
 	 */
-	public function getMoodleAvatar(string $url): string {
-		$rawResult = $this->client->get($url)->getBody();
+	public function getMoodleAvatar(string $url, bool $checkSsl): string {
+		if ($checkSsl) {
+			$rawResult = $this->client->get($url)->getBody();
+		} else {
+			$rawResult = $this->client->get($url, ['verify' => false])->getBody();
+		}
 		$success = preg_match('/<svg.*/', $rawResult, $matches);
 		//$result = $success === 1 ? $this->getBase64Svg($matches[0]) : $rawResult;
 		if ($success === 1) {
@@ -252,7 +256,7 @@ class MoodleAPIService {
 	 * @param string $method
 	 * @return array
 	 */
-	public function request(string $url, string $endPoint, array $params = [], string $method = 'GET'): array {
+	public function request(string $url, string $endPoint, bool $checkSsl = true, array $params = [], string $method = 'GET'): array {
 		try {
 			$url = $url . '/' . $endPoint;
 			$options = [
@@ -260,6 +264,10 @@ class MoodleAPIService {
 					'User-Agent' => 'Nextcloud Moodle integration',
 				]
 			];
+
+			if (!$checkSsl) {
+				$options['verify'] = false;
+			}
 
 			if (count($params) > 0) {
 				if ($method === 'GET') {
@@ -309,12 +317,12 @@ class MoodleAPIService {
 	 * @param string $password
 	 * @return array
 	 */
-	public function getToken(string $moodleUrl, string $login, string $password): array {
+	public function getToken(string $moodleUrl, string $login, string $password, bool $checkSsl): array {
 		$params = [
 			'username' => $login,
 			'password' => $password,
 			'service' => 'moodle_mobile_app',
 		];
-		return $this->request($moodleUrl, 'login/token.php', $params, 'POST');
+		return $this->request($moodleUrl, 'login/token.php', $checkSsl, $params, 'POST');
 	}
 }

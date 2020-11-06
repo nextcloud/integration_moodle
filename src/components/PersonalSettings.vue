@@ -63,6 +63,15 @@
 				</button>
 				<span />
 			</div>
+			<br>
+			<input
+				id="check-ssl-moodle"
+				type="checkbox"
+				class="checkbox"
+				:checked="state.check_ssl"
+				@input="onCheckSslChange">
+			<label for="check-ssl-moodle">{{ t('integration_moodle', 'Check SSL certificate') }}</label>
+			<br>
 			<div v-if="connected" id="moodle-search-block">
 				<input
 					id="search-moodle-courses"
@@ -88,7 +97,7 @@
 					@input="onSearchUpcomingChange">
 				<label for="search-moodle-upcoming">{{ t('integration_moodle', 'Enable searching for upcoming events') }}</label>
 				<br><br>
-				<p v-if="state.search_enabled" class="settings-hint">
+				<p v-if="searchEnabled" class="settings-hint">
 					<span class="icon icon-details" />
 					{{ t('integration_moodle', 'Warning, everything you type in the search bar will be sent to your Moodle instance.') }}
 				</p>
@@ -131,12 +140,19 @@ export default {
 				&& this.state.url && this.state.url !== ''
 				&& this.state.user_name && this.state.user_name !== ''
 		},
+		searchEnabled() {
+			return this.state.search_courses_enabled || this.state.search_modules_enabled || this.state.search_upcoming_enabled
+		},
 	},
 
 	methods: {
 		onLogoutClick() {
 			this.state.token = ''
 			this.saveOptions(true)
+		},
+		onCheckSslChange(e) {
+			this.state.check_ssl = e.target.checked
+			this.saveOptions(false)
 		},
 		onSearchCoursesChange(e) {
 			this.state.search_courses_enabled = e.target.checked
@@ -175,6 +191,7 @@ export default {
 					search_modules_enabled: this.state.search_modules_enabled ? '1' : '0',
 					search_courses_enabled: this.state.search_courses_enabled ? '1' : '0',
 					search_upcoming_enabled: this.state.search_upcoming_enabled ? '1' : '0',
+					check_ssl: this.state.check_ssl ? '1' : '0',
 				}
 			}
 			const url = generateUrl('/apps/integration_moodle/config')
@@ -185,7 +202,7 @@ export default {
 				.catch((error) => {
 					showError(
 						t('integration_moodle', 'Failed to save Moodle options')
-						+ ': ' + error.response.request.responseText
+						+ ': ' + error.response?.request?.responseText
 					)
 				})
 				.then(() => {

@@ -112,12 +112,13 @@ class MoodleSearchUpcomingProvider implements IProvider {
 
 		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$checkSsl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'check_ssl', '1') === '1';
 		$searchUpcomingEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_upcoming_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchUpcomingEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->searchUpcoming($moodleUrl, $accessToken, $term, $offset, $limit);
+		$searchResults = $this->service->searchUpcoming($moodleUrl, $accessToken, $checkSsl, $term, $offset, $limit);
 		if ($searchResults['error'] || $searchResults['exception']) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}

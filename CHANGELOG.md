@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.4 – 2020-11-06
+### Added
+- option to disabled SSL check
+
+### Changed
+- improve code quality
+- bump js libs, use webpack 5
+
 ## 0.0.3 – 2020-10-12
 ### Changed
 - 'more' link now points to Moodle's dashboard

@@ -10,7 +10,7 @@ OC.L10N.register(
     "Connected accounts" : "Verbundene Konten",
     "Moodle integration" : "Moodle-Einbindung",
     "Integration of Moodle learning management system" : "Integration des Moodle-Lernverwaltungssystems",
-    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Die Einbindung von Moodle bietet ein Dashboard-Widget, das Informationen über Deine letzten Kurse und bevorstehenden Veranstaltungen anzeigt.\n  Es ermöglicht auch die Suche nach Inhalten in Moodle.",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Die Einbindung von Moodle bietet ein Dashboard-Widget, das Informationen über Deine letzten Kurse und anstehende Veranstaltungen anzeigt.\n  Es ermöglicht auch die Suche nach Inhalten in Moodle.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Dein Passwort wird nicht gespeichert. Es wird nur einmal verwendet, um ein Zugriffstoken zu erhalten, mit dem du mit deinem Moodle-Konto interagieren kannst.",
     "Moodle instance address" : "Adresse der Moodle-Instanz",
     "Moodle instance URL" : "URL der Moodle-Instanz",

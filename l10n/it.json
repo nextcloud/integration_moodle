@@ -19,6 +19,7 @@
     "Connect to Moodle" : "Connetti a Moodle",
     "Connected as {user}" : "Connesso come {user}",
     "Disconnect from Moodle" : "Disconnetti da Moodle",
+    "Check SSL certificate" : "Verifica certificato SSL",
     "Enable searching for courses" : "Abilita la ricerca dei corsi",
     "Enable searching for course modules" : "Abilita la ricerca dei moduli dei corsi",
     "Enable searching for upcoming events" : "Abilita la ricerca dei prossimi eventi",

@@ -21,6 +21,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Conectar con Moodle",
     "Connected as {user}" : "Conectado como {user}",
     "Disconnect from Moodle" : "Desconectar de Moodle",
+    "Check SSL certificate" : "Comprobar certificado SSL",
     "Enable searching for courses" : "Activar la búsqueda de cursos",
     "Enable searching for course modules" : "Activar la búsqueda para módulos de curso",
     "Enable searching for upcoming events" : "Activar la búsqueda de eventos próximos",

@@ -21,6 +21,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Moodle bağlantısı kur",
     "Connected as {user}" : "{user} olarak bağlantı kuruldu",
     "Disconnect from Moodle" : "Moodle bağlantısını kes",
+    "Check SSL certificate" : "SSL sertifikasını denetle",
     "Enable searching for courses" : "Derslerde arama yapılabilsin",
     "Enable searching for course modules" : "Ders modüllerinde arama yapılabilsin",
     "Enable searching for upcoming events" : "Yaklaşan etkinliklerde arama yapılabilsin",

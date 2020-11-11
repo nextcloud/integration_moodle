@@ -8,6 +8,7 @@
     "Connected accounts" : "Comptes connectades",
     "Moodle integration" : "Integració de Moodle",
     "Integration of Moodle learning management system" : "Integració del sistema de gestió de l'aprenentatge Moodle",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "La integració de Moodle proporciona un giny d'escriptori digital que mostra informació sobre els vostres cursos recents i propers esdevenimetns.\nAixò també us permet cercar continguts a Moodle.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "La contrasenya no està emmagatzemada. Només s'utilitza una vegada per obtenir un testimoni d'accés que s'utilitzarà per interactuar amb el seu compte de Moodle.",
     "Moodle instance address" : "Adreça de la instància de Moodle",
     "Moodle instance URL" : "URL de la instància de Moodle",

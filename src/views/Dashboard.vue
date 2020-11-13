@@ -70,6 +70,7 @@ export default {
 					targetUrl: this.getNotificationTarget(n),
 					avatarUrl: this.getAuthorAvatarUrl(n),
 					avatarUsername: this.getSubline(n),
+					avatarIsNoUser: true,
 					overlayIconUrl: this.getNotificationTypeImage(n),
 					mainText: this.getMainText(n),
 					subText: this.getSubline(n),
@@ -214,10 +215,11 @@ export default {
 			if (['event'].includes(n.type)) {
 				return n.course.courseimage
 			} else if (['recent'].includes(n.type)) {
-				const el = document.createElement('img')
-				el.innerHTML = n.icon
-				const realUrl = el.firstChild.getAttribute('src')
-				return generateUrl('/apps/integration_moodle/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(realUrl)
+				return undefined
+				// const el = document.createElement('img')
+				// el.innerHTML = n.icon
+				// const realUrl = el.firstChild.getAttribute('src')
+				// return generateUrl('/apps/integration_moodle/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(realUrl)
 			}
 			return ''
 		},

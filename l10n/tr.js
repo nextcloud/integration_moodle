@@ -10,7 +10,7 @@ OC.L10N.register(
     "Connected accounts" : "Bağlı hesaplar",
     "Moodle integration" : "Moodle bütünleştirmesi",
     "Integration of Moodle learning management system" : "Moodle öğrenme yönetimi sistemi bütünleştirmesi",
-    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle bütünleştirmesi son dersleriniz ve yaklaşan etkinlikleriniz hakkındaki bilgileri görüntüleyen bir pano gereci sağlar.\n    Ayrıca Moodle içeriklerinde arama yapabilmenizi sağlar.",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle bütünleştirmesi son dersleriniz ve yaklaşan etkinlikleriniz hakkındaki bilgileri görüntüleyen bir pano bileşeni sağlar.\n    Ayrıca Moodle içeriklerinde arama yapabilmenizi sağlar.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Parolanız kaydedilmez. Moodle hesabınızla etkileşim kurmak için kullanılacak bir erişim kodu almak için yalnız bir kez kullanılır.",
     "Moodle instance address" : "Moodle kopyası adresi",
     "Moodle instance URL" : "Moodle kopyası adresi",

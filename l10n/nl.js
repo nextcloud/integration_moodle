@@ -18,6 +18,7 @@ OC.L10N.register(
     "Your password" : "Je wachtwoord",
     "Connect to Moodle" : "Verbinden met Moodle",
     "Connected as {user}" : "Verbonden als {user}",
-    "Disconnect from Moodle" : "Verbinding met Moodle verbreken"
+    "Disconnect from Moodle" : "Verbinding met Moodle verbreken",
+    "No Moodle notifications!" : "Geen Moodle meldingen!"
 },
 "nplurals=2; plural=(n != 1);");

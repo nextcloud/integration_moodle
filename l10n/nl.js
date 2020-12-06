@@ -19,6 +19,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Verbinden met Moodle",
     "Connected as {user}" : "Verbonden als {user}",
     "Disconnect from Moodle" : "Verbinding met Moodle verbreken",
+    "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Let op: alles wat je intypt in de zoekbalk wordt naar je Moodle-server gestuurd.",
     "No Moodle account connected" : "Geen Moodle-account verbonden",
     "Error connecting to Moodle" : "Fout bij het verbinden met Moodle",
     "No Moodle notifications!" : "Geen Moodle meldingen!"

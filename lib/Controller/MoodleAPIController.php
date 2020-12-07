@@ -87,7 +87,7 @@ class MoodleAPIController extends Controller {
 		if (!isset($result['error'])) {
 			// we save the client ID and secret and give the client ID back to the UI
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $result['token']);
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'privatetoken', $result['privatetoken']);
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'privatetoken', $result['privatetoken'] ?? '');
 			// get user info
 			$chosenName = $login;
 			$params = [

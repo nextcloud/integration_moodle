@@ -8,7 +8,7 @@ OC.L10N.register(
     "Moodle upcoming events" : "Prihajajoči dogodki Moodle",
     "Bad credentials" : "Neustrezna poverila",
     "Connected accounts" : "Povezani računi",
-    "Moodle integration" : "Podpora Moodle",
+    "Moodle integration" : "Združevalnik Moodle",
     "Integration of Moodle learning management system" : "Podpora za dostop do sistema za vodenje učnega procesa Moodle",
     "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Podpora za Moodle omogoča uporabo gradnika nadzorne plošče, ki prikazuje podatke o prihajajočih dejavnostih in dogodkih.\nOmogoča tudi iskanje po vsebini dostopne vsebine na strežniku Moodle.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Geslo se ne shrani na strežniku. Uporabljeno je za pridobitev posebnetga žetona dostopa, ki je nato uporabljen za izmenjavo podatkov z računom Moodle.",

@@ -23,7 +23,7 @@
     "Enable searching for courses" : "Omogoči iskanje med dejavnostmi",
     "Enable searching for course modules" : "Omogoči iskanje med moduli dejavnostmi",
     "Enable searching for upcoming events" : "Omogoči iskanje med prihajajočimi dogodki",
-    "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Opozorilo! Karkoli vpišete v iskalno okno bo poslano na strežnik Moodle.",
+    "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Opozorilo! Karkoli vpišete v iskalno polje bo poslano na strežnik Moodle.",
     "Moodle options saved" : "Nastavitve Moodle so shranjene",
     "Failed to save Moodle options" : "Shranjevanje nastavitev Moodle je spodletelo",
     "Successfully connected to Moodle!" : "Povezava s strežnikom Moodle je uspešno vzpostavljena!",

@@ -65,12 +65,18 @@ class MoodleAPIService {
 
 		// get courses and set 'time'
 		$courseIds = [];
+		$recents = [];
 		foreach ($recentItems as $k => $recentItem) {
+			if (!is_array($recentItem) || !isset($recentItem['timeaccess'])) {
+				continue;
+			}
 			if (isset($recentItem['courseid']) && !in_array($recentItem['courseid'], $courseIds)) {
 				$courseIds[] = $recentItem['courseid'];
 			}
-			$recentItems[$k]['time'] = $recentItem['timeaccess'];
-			$recentItems[$k]['type'] = 'recent';
+			$recent = $recentItem;
+			$recent['time'] = $recentItem['timeaccess'];
+			$recent['type'] = 'recent';
+			$recents[] = $recent;
 		}
 
 		// get upcoming events
@@ -97,14 +103,14 @@ class MoodleAPIService {
 
 		// filter by date
 		if (!is_null($recentSince)) {
-			$recentItems = array_filter($recentItems, function($elem) use ($recentSince) {
+			$recents = array_filter($recents, function($elem) use ($recentSince) {
 				$ts = intval($elem['time']);
 				return $ts > $recentSince;
 			});
 		}
 
 		return [
-			'recents' => array_values($recentItems),
+			'recents' => array_values($recents),
 			'events' => array_values($upcomingEvents)
 		];
 	}

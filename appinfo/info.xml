@@ -5,7 +5,7 @@
     <summary>Integration of Moodle learning management system</summary>
     <description><![CDATA[Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.
     It also allows you to search for content in Moodle.]]></description>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Moodle</namespace>

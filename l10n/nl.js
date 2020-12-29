@@ -5,6 +5,7 @@ OC.L10N.register(
     "Moodle courses" : "Moodle cursussen",
     "Moodle course" : "Moodle cursus",
     "Moodle course modules" : "Moodle cursusmodules",
+    "Moodle upcoming events" : "Moodle volgende afspraken",
     "Bad credentials" : "Foute inloggegevens",
     "Connected accounts" : "Verbonden accounts",
     "Moodle integration" : "Moodle integratie",
@@ -19,11 +20,18 @@ OC.L10N.register(
     "Connect to Moodle" : "Verbinden met Moodle",
     "Connected as {user}" : "Verbonden als {user}",
     "Disconnect from Moodle" : "Verbinding met Moodle verbreken",
+    "Check SSL certificate" : "Controleer SSL certificaat",
+    "Enable searching for courses" : "Inschakelen zoeken naar cursussen",
+    "Enable searching for course modules" : "Inschakelen zoeken naar cursusmodules",
+    "Enable searching for upcoming events" : "Inschakelen zoeken naar komende afspraken",
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "Let op: alles wat je intypt in de zoekbalk wordt naar je Moodle-server gestuurd.",
+    "Moodle options saved" : "Moodle opties bewaard",
     "Failed to save Moodle options" : "Kon Moodle-opties niet opslaan",
+    "Successfully connected to Moodle!" : "Succesvol verbonden met Moodle!",
     "Failed to authenticate to Moodle" : "Authenticatie bij Moodle mislukt",
     "No Moodle account connected" : "Geen Moodle-account verbonden",
     "Error connecting to Moodle" : "Fout bij het verbinden met Moodle",
-    "No Moodle notifications!" : "Geen Moodle meldingen!"
+    "No Moodle notifications!" : "Geen Moodle meldingen!",
+    "Failed to get Moodle notifications" : "Kon Moodle meldingen niet ophalen"
 },
 "nplurals=2; plural=(n != 1);");

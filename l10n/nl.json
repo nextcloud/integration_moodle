@@ -8,6 +8,7 @@
     "Connected accounts" : "Verbonden accounts",
     "Moodle integration" : "Moodle integratie",
     "Integration of Moodle learning management system" : "Integratie van Moodle learning management system",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle-integratie biedt een dashboardwidget die belangrijke informatie over je cursussen en komende afspraken weergeeft.\nHet laat je ook zoeken naar content in Moodle.",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Je wachtwoord wordt niet opgeslagen. Het wordt maar één keer gebruikt om een toegangstoken te krijgen dat zal worden gebruikt om te communiceren met je Moodle-account.",
     "Moodle instance address" : "Moodle instance adres",
     "Moodle instance URL" : "Moodle instance URL",

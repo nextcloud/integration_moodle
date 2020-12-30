@@ -58,8 +58,8 @@ class MoodleAPIService {
 
 		// sort recent items by date DESC
 		$a = usort($recentItems, function($a, $b) {
-			$ta = $a['timeaccess'];
-			$tb = $b['timeaccess'];
+			$ta = $a['timeaccess'] ?? 0;
+			$tb = $b['timeaccess'] ?? 0;
 			return ($ta > $tb) ? -1 : 1;
 		});
 
@@ -91,13 +91,13 @@ class MoodleAPIService {
 		}
 		// sort upcoming events by date ASC
 		$a = usort($upcomingEvents, function($a, $b) {
-			$ta = $a['timestart'];
-			$tb = $b['timestart'];
+			$ta = $a['timestart'] ?? 0;
+			$tb = $b['timestart'] ?? 0;
 			return ($ta < $tb) ? -1 : 1;
 		});
 
 		foreach ($upcomingEvents as $k => $upcomingEvent) {
-			$upcomingEvents[$k]['time'] = $upcomingEvent['timestart'];
+			$upcomingEvents[$k]['time'] = $upcomingEvent['timestart'] ?? 0;
 			$upcomingEvents[$k]['type'] = 'event';
 		}
 

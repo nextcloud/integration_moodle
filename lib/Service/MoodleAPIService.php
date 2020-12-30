@@ -67,14 +67,11 @@ class MoodleAPIService {
 		$courseIds = [];
 		$recents = [];
 		foreach ($recentItems as $k => $recentItem) {
-			if (!is_array($recentItem) || !isset($recentItem['timeaccess'])) {
-				continue;
-			}
 			if (isset($recentItem['courseid']) && !in_array($recentItem['courseid'], $courseIds)) {
 				$courseIds[] = $recentItem['courseid'];
 			}
 			$recent = $recentItem;
-			$recent['time'] = $recentItem['timeaccess'];
+			$recent['time'] = $recentItem['timeaccess'] ?? 0;
 			$recent['type'] = 'recent';
 			$recents[] = $recent;
 		}

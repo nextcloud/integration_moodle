@@ -21,6 +21,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Σύνδεση στο Moodle",
     "Connected as {user}" : "Συνδεδεμένος ως {user}",
     "Disconnect from Moodle" : "Αποσύνδεση από το Moodle",
+    "Check SSL certificate" : "Ελέγξτε το πιστοποιητικό SSL",
     "Enable searching for courses" : "Ενεργοποίση αναζήτησης μαθημάτων",
     "Enable searching for course modules" : "Ενεργοποίηση αναζήτησης αρθρωμάτων μαθήματος",
     "Enable searching for upcoming events" : "Ενεργοποίηση αναζήτησης για επερχόμενα συμγάντα",

@@ -21,6 +21,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Poveži se s Moodleom",
     "Connected as {user}" : "Povezan kao {user}",
     "Disconnect from Moodle" : "Odspoji se s Moodlea",
+    "Check SSL certificate" : "Provjeri vjerodajnicu SSL-a",
     "Enable searching for courses" : "Omogući traženje tečajeva",
     "Enable searching for course modules" : "Omogući traženje modula tečaja",
     "Enable searching for upcoming events" : "Omogući traženje nadolazećih događaja",

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.7 – 2021-01-27
+### Changed
+- bump js libs
+- add admin option to globally disable search
+
 ## 0.0.5 – 2020-11-06
 ### Changed
 - don't force HTTPS anymore

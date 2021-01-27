@@ -72,7 +72,7 @@
 				@input="onCheckSslChange">
 			<label for="check-ssl-moodle">{{ t('integration_moodle', 'Check SSL certificate') }}</label>
 			<br>
-			<div v-if="connected" id="moodle-search-block">
+			<div v-if="connected && !state.search_disabled" id="moodle-search-block">
 				<input
 					id="search-moodle-courses"
 					type="checkbox"

@@ -49,6 +49,8 @@ class Personal implements ISettings {
         $userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name', '');
         $checkSsl = $this->config->getUserValue($this->userId, Application::APP_ID, 'check_ssl', '1') === '1';
 
+        $searchDisabled = $this->config->getAppValue(Application::APP_ID, 'search_disabled', '0') === '1';
+
         $userConfig = [
             'token' => $token,
             'url' => $url,
@@ -57,6 +59,7 @@ class Personal implements ISettings {
             'search_upcoming_enabled' => ($searchUpcomingEnabled === '1'),
             'user_name' => $userName,
             'check_ssl' => $checkSsl,
+            'search_disabled' => $searchDisabled,
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
         return new TemplateResponse(Application::APP_ID, 'personalSettings');

@@ -11,6 +11,7 @@ namespace OCA\Moodle\AppInfo;
 
 use OCP\IContainer;
 
+use OCP\IConfig;
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
@@ -41,13 +42,17 @@ class Application extends App implements IBootstrap {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$container = $this->getContainer();
+		$this->config = $container->query(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerDashboardWidget(MoodleWidget::class);
-		$context->registerSearchProvider(MoodleSearchCoursesProvider::class);
-		$context->registerSearchProvider(MoodleSearchModulesProvider::class);
-		$context->registerSearchProvider(MoodleSearchUpcomingProvider::class);
+
+		if ($this->config->getAppValue(self::APP_ID, 'search_disabled', '0') === '0') {
+			$context->registerSearchProvider(MoodleSearchCoursesProvider::class);
+			$context->registerSearchProvider(MoodleSearchModulesProvider::class);
+			$context->registerSearchProvider(MoodleSearchUpcomingProvider::class);
+		}
 	}
 
 	public function boot(IBootContext $context): void {

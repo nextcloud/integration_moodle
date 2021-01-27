@@ -12,6 +12,7 @@
 return [
     'routes' => [
         ['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
+        ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
         ['name' => 'moodleAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
         ['name' => 'moodleAPI#getMoodleUrl', 'url' => '/url', 'verb' => 'GET'],
         ['name' => 'moodleAPI#getMoodleAvatar', 'url' => '/avatar', 'verb' => 'GET'],

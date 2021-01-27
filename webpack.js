@@ -12,6 +12,7 @@ webpackConfig.stats = {
 
 webpackConfig.entry = {
     personalSettings: { import: path.join(__dirname, 'src', 'personalSettings.js'), filename: 'integration_moodle-personalSettings.js' },
+    adminSettings: { import: path.join(__dirname, 'src', 'adminSettings.js'), filename: 'integration_moodle-adminSettings.js' },
     dashboard: { import: path.join(__dirname, 'src', 'dashboard.js'), filename: 'integration_moodle-dashboard.js' },
 }
 

@@ -29,6 +29,6 @@ OC.L10N.register(
     "No Moodle account connected" : "未連線至 Moodle 帳號",
     "Error connecting to Moodle" : "連線至 Moodle 時發生錯誤",
     "No Moodle notifications!" : "無 Moodle 通知！",
-    "Failed to get Moodle notifications" : "取得 Moodle 通知失敗"
+    "Failed to get Moodle notifications" : "未能獲取 Moodle 通知"
 },
 "nplurals=1; plural=0;");

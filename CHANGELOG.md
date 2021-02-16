@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.9 – 2021-02-16
+### Changed
+- app certificate
+
 ## 0.0.8 – 2021-02-12
 ### Changed
 - bump js libs

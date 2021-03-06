@@ -18,7 +18,7 @@ OC.L10N.register(
     "Moodle instance address" : "Moodle 站台地址",
     "Moodle instance URL" : "Moodle 站台 URL",
     "Moodle login" : "Moodle 登入",
-    "Your user name" : "您的用戶姓名",
+    "Your user name" : "您的用戶名稱",
     "Moodle password" : "Moodle 密碼",
     "Your password" : "您的密碼",
     "Connect to Moodle" : "連線至 Moodle",
@@ -35,7 +35,7 @@ OC.L10N.register(
     "Failed to authenticate to Moodle" : "驗證 Moodle 失敗",
     "No Moodle account connected" : "未連線至 Moodle 帳號",
     "Error connecting to Moodle" : "連線至 Moodle 時發生錯誤",
-    "No Moodle notifications!" : "無 Moodle 通知！",
-    "Failed to get Moodle notifications" : "未能獲取 Moodle 通知"
+    "No Moodle notifications!" : "無 Moodle 通告！",
+    "Failed to get Moodle notifications" : "未能獲取 Moodle 通告"
 },
 "nplurals=1; plural=0;");

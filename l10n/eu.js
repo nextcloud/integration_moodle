@@ -16,6 +16,7 @@ OC.L10N.register(
     "Your password" : "Zure pasahitza",
     "Connect to Moodle" : "Konektatu Moodle-era",
     "Connected as {user}" : "{user} gisa konektatuta",
+    "Disconnect from Moodle" : "Moodle-tik deskonektatu",
     "Failed to save Moodle options" : "Moodle aukerak gordetzeak huts egin du",
     "Error connecting to Moodle" : "Errorea Moodle-era konektatzen",
     "No Moodle notifications!" : "Ez dago Moodle jakinarazpenik!"

@@ -21,7 +21,7 @@ OC.L10N.register(
     "Moodle options saved" : "Moodle aukerak gorde dira",
     "Failed to save Moodle options" : "Moodle aukerak gordetzeak huts egin du",
     "Failed to authenticate to Moodle" : "Moodle-ekin autentifikatzeak huts egin du",
-    "Error connecting to Moodle" : "Errorea Moodle-era konektatzen",
+    "Error connecting to Moodle" : "Errorea Moodle-era konektatzean",
     "No Moodle notifications!" : "Ez dago Moodle jakinarazpenik!"
 },
 "nplurals=2; plural=(n != 1);");

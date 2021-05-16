@@ -12,7 +12,7 @@
     "Disable search for all users" : "Suche für alle Benutzer deaktivieren",
     "Moodle admin options saved" : "Moodle-Administrator-Einstellungen gespeichert.",
     "Failed to save Moodle admin options" : "Fehler beim Speichern der Moodle-Administrator-Einstellungen",
-    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Dein Passwort wird nicht gespeichert. Es wird nur einmal verwendet, um ein Zugriffstoken zu erhalten, mit dem du mit deinem Moodle-Konto interagieren kannst.",
+    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Dein Passwort wird nicht gespeichert. Es wird nur einmal verwendet, um ein Zugriffstoken zu erhalten, mit dem Du mit Deinem Moodle-Konto interagieren kannst.",
     "Moodle instance address" : "Adresse der Moodle-Instanz",
     "Moodle instance URL" : "URL der Moodle-Instanz",
     "Moodle login" : "Moodle-Anmeldung",

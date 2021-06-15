@@ -19,7 +19,7 @@
     "Your user name" : "Nazwa użytkownika",
     "Moodle password" : "Hasło Moodle",
     "Your password" : "Twoje hasło",
-    "Connect to Moodle" : "Połącz się z Moodle",
+    "Connect to Moodle" : "Połącz z Moodle",
     "Connected as {user}" : "Połączono jako {user}",
     "Disconnect from Moodle" : "Rozłącz się z Moodle",
     "Check SSL certificate" : "Sprawdź certyfikat SSL",
@@ -32,7 +32,7 @@
     "Successfully connected to Moodle!" : "Pomyślnie połączono z Moodlem!",
     "Failed to authenticate to Moodle" : "Nie udało się uwierzytelnić w Moodle",
     "No Moodle account connected" : "Brak połączonego konta Moodle",
-    "Error connecting to Moodle" : "Błąd podczas łączenia się z Moodle",
+    "Error connecting to Moodle" : "Błąd podczas łączenia z Moodle",
     "No Moodle notifications!" : "Brak powiadomień Moodla!",
     "Failed to get Moodle notifications" : "Nie udało się pobrać powiadomień Moodla"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"

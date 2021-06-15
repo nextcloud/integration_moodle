@@ -21,7 +21,7 @@ OC.L10N.register(
     "Your user name" : "Nazwa użytkownika",
     "Moodle password" : "Hasło Moodle",
     "Your password" : "Twoje hasło",
-    "Connect to Moodle" : "Połącz się z Moodle",
+    "Connect to Moodle" : "Połącz z Moodle",
     "Connected as {user}" : "Połączono jako {user}",
     "Disconnect from Moodle" : "Rozłącz się z Moodle",
     "Check SSL certificate" : "Sprawdź certyfikat SSL",
@@ -34,7 +34,7 @@ OC.L10N.register(
     "Successfully connected to Moodle!" : "Pomyślnie połączono z Moodlem!",
     "Failed to authenticate to Moodle" : "Nie udało się uwierzytelnić w Moodle",
     "No Moodle account connected" : "Brak połączonego konta Moodle",
-    "Error connecting to Moodle" : "Błąd podczas łączenia się z Moodle",
+    "Error connecting to Moodle" : "Błąd podczas łączenia z Moodle",
     "No Moodle notifications!" : "Brak powiadomień Moodla!",
     "Failed to get Moodle notifications" : "Nie udało się pobrać powiadomień Moodla"
 },

@@ -5,7 +5,7 @@
     <summary>Integration of Moodle learning management system</summary>
     <description><![CDATA[Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.
     It also allows you to search for content in Moodle.]]></description>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Moodle</namespace>
@@ -21,7 +21,7 @@
         <database min-version="9.4">pgsql</database>
         <database>sqlite</database>
         <database min-version="5.5">mysql</database>
-        <nextcloud min-version="20" max-version="22"/>
+        <nextcloud min-version="22" max-version="23"/>
     </dependencies>
     <settings>
         <admin>OCA\Moodle\Settings\Admin</admin>

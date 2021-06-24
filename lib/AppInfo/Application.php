@@ -9,16 +9,13 @@
 
 namespace OCA\Moodle\AppInfo;
 
-use OCP\IContainer;
 
 use OCP\IConfig;
 use OCP\AppFramework\App;
-use OCP\AppFramework\IAppContainer;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
-use OCA\Moodle\Controller\PageController;
 use OCA\Moodle\Dashboard\MoodleWidget;
 use OCA\Moodle\Search\MoodleSearchCoursesProvider;
 use OCA\Moodle\Search\MoodleSearchModulesProvider;
@@ -32,6 +29,10 @@ use OCA\Moodle\Search\MoodleSearchUpcomingProvider;
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_moodle';
+	/**
+	 * @var mixed
+	 */
+	private $config;
 
 	/**
 	 * Constructor
@@ -42,7 +43,7 @@ class Application extends App implements IBootstrap {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$container = $this->getContainer();
-		$this->config = $container->query(IConfig::class);
+		$this->config = $container->get(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {

@@ -45,6 +45,14 @@ class MoodleSearchCoursesProvider implements IProvider {
 
 	/** @var IURLGenerator */
 	private $urlGenerator;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var MoodleAPIService
+	 */
+	private $service;
 
 	/**
 	 * CospendSearchProvider constructor.
@@ -105,13 +113,13 @@ class MoodleSearchCoursesProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme');
 		$thumbnailUrl = ($theme === 'dark') ?
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg') :
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
 
-		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
-		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
 		$checkSsl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'check_ssl', '1') === '1';
 		$searchCoursesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_courses_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchCoursesEnabled) {
@@ -123,7 +131,7 @@ class MoodleSearchCoursesProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
+		$formattedResults = array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
 			return new MoodleSearchResultEntry(
 				$thumbnailUrl,
 				$this->getMainText($entry),

@@ -2,51 +2,45 @@
 namespace OCA\Moodle\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IRequest;
-use OCP\IL10N;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
-use OCP\Util;
-use OCP\IURLGenerator;
-use OCP\IInitialStateService;
 
 use OCA\Moodle\AppInfo\Application;
 
 class Personal implements ISettings {
 
-    private $request;
-    private $config;
-    private $dataDirPath;
-    private $urlGenerator;
-    private $l;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var IInitialState
+	 */
+	private $initialStateService;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
 
-    public function __construct(
-                        string $appName,
-                        IL10N $l,
-                        IRequest $request,
-                        IConfig $config,
-                        IURLGenerator $urlGenerator,
-                        IInitialStateService $initialStateService,
-                        $userId) {
-        $this->appName = $appName;
-        $this->urlGenerator = $urlGenerator;
-        $this->request = $request;
-        $this->l = $l;
-        $this->config = $config;
-        $this->initialStateService = $initialStateService;
-        $this->userId = $userId;
-    }
+	public function __construct(IConfig $config,
+								IInitialState $initialStateService,
+								?string $userId) {
+		$this->config = $config;
+		$this->initialStateService = $initialStateService;
+		$this->userId = $userId;
+	}
 
     /**
      * @return TemplateResponse
      */
     public function getForm(): TemplateResponse {
-        $token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
-        $url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
+        $token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+        $url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
         $searchCoursesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_courses_enabled', '0');
         $searchModulesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_modules_enabled', '0');
         $searchUpcomingEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_upcoming_enabled', '0');
-        $userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name', '');
+        $userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
         $checkSsl = $this->config->getUserValue($this->userId, Application::APP_ID, 'check_ssl', '1') === '1';
 
         $searchDisabled = $this->config->getAppValue(Application::APP_ID, 'search_disabled', '0') === '1';
@@ -61,7 +55,7 @@ class Personal implements ISettings {
             'check_ssl' => $checkSsl,
             'search_disabled' => $searchDisabled,
         ];
-        $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
+        $this->initialStateService->provideInitialState('user-config', $userConfig);
         return new TemplateResponse(Application::APP_ID, 'personalSettings');
     }
 

@@ -13,13 +13,10 @@ class AdminSection implements IIconSection {
 	/** @var IURLGenerator */
 	private $urlGenerator;
 
-	public function __construct(string $appName,
-					IURLGenerator $urlGenerator,
-					IL10N $l
-					) {
-		$this->appName = $appName;
-		$this->l = $l;
+	public function __construct(IURLGenerator $urlGenerator,
+								IL10N $l) {
 		$this->urlGenerator = $urlGenerator;
+		$this->l = $l;
 	}
 
 	/**

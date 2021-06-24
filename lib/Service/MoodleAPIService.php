@@ -11,36 +11,46 @@
 
 namespace OCA\Moodle\Service;
 
+use Exception;
 use OCP\IL10N;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 
-use OCA\Moodle\AppInfo\Application;
-
 class MoodleAPIService {
-
-	private $l10n;
+	/**
+	 * @var string
+	 */
+	private $appName;
+	/**
+	 * @var LoggerInterface
+	 */
 	private $logger;
+	/**
+	 * @var IL10N
+	 */
+	private $l10n;
+	/**
+	 * @var \OCP\Http\Client\IClient
+	 */
+	private $client;
 
 	/**
 	 * Service to make requests to Moodle v1 API
 	 */
-	public function __construct (
-		string $appName,
-		LoggerInterface $logger,
-		IL10N $l10n,
-		IClientService $clientService
-	) {
+	public function __construct (string $appName,
+								LoggerInterface $logger,
+								IL10N $l10n,
+								IClientService $clientService) {
 		$this->appName = $appName;
-		$this->l10n = $l10n;
 		$this->logger = $logger;
-		$this->clientService = $clientService;
+		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
 	}
 
 	/**
 	 * @param string $url
 	 * @param string $accessToken
+	 * @param bool $checkSsl
 	 * @param ?int $recentSince
 	 * @return array
 	 */
@@ -57,7 +67,7 @@ class MoodleAPIService {
 		}
 
 		// sort recent items by date DESC
-		$a = usort($recentItems, function($a, $b) {
+		usort($recentItems, function($a, $b) {
 			$ta = $a['timeaccess'] ?? 0;
 			$tb = $b['timeaccess'] ?? 0;
 			return ($ta > $tb) ? -1 : 1;
@@ -87,7 +97,7 @@ class MoodleAPIService {
 			}
 		}
 		// sort upcoming events by date ASC
-		$a = usort($upcomingEvents, function($a, $b) {
+		usort($upcomingEvents, function($a, $b) {
 			$ta = $a['timestart'] ?? 0;
 			$tb = $b['timestart'] ?? 0;
 			return ($ta < $tb) ? -1 : 1;
@@ -115,6 +125,7 @@ class MoodleAPIService {
 	/**
 	 * @param string $url
 	 * @param string $accessToken
+	 * @param bool $checkSsl
 	 * @param string $query
 	 * @param int $offset
 	 * @param int $limit
@@ -160,8 +171,8 @@ class MoodleAPIService {
 			if ($sections['exception'] || $sections['error']) {
 				return $sections;
 			}
-			foreach ($sections as $k => $section) {
-				foreach ($section['modules'] as $k => $module) {
+			foreach ($sections as $ks => $section) {
+				foreach ($section['modules'] as $km => $module) {
 					$moduleName = strtolower($module['name']);
 					if (strpos($moduleName, $query) !== false) {
 						$module['section_name'] = $section['name'];
@@ -181,6 +192,7 @@ class MoodleAPIService {
 	/**
 	 * @param string $url
 	 * @param string $accessToken
+	 * @param bool $checkSsl
 	 * @param string $query
 	 * @param int $offset
 	 * @param int $limit
@@ -228,7 +240,9 @@ class MoodleAPIService {
 
 	/**
 	 * @param string $url
+	 * @param bool $checkSsl
 	 * @return string
+	 * @throws Exception
 	 */
 	public function getMoodleAvatar(string $url, bool $checkSsl): string {
 		if ($checkSsl) {
@@ -255,6 +269,7 @@ class MoodleAPIService {
 	/**
 	 * @param string $url
 	 * @param string $endPoint
+	 * @param bool $checkSsl
 	 * @param array $params
 	 * @param string $method
 	 * @return array
@@ -299,6 +314,8 @@ class MoodleAPIService {
 				$response = $this->client->put($url, $options);
 			} else if ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
+			} else {
+				return ['error' => $this->l10n->t('Bad HTTP method')];
 			}
 			$body = $response->getBody();
 			$respCode = $response->getStatusCode();
@@ -308,7 +325,7 @@ class MoodleAPIService {
 			} else {
 				return json_decode($body, true);
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->logger->warning('Moodle API error : '.$e, array('app' => $this->appName));
 			return ['error' => $e->getMessage()];
 		}
@@ -318,6 +335,7 @@ class MoodleAPIService {
 	 * @param string $moodleUrl
 	 * @param string $login
 	 * @param string $password
+	 * @param bool $checkSsl
 	 * @return array
 	 */
 	public function getToken(string $moodleUrl, string $login, string $password, bool $checkSsl): array {

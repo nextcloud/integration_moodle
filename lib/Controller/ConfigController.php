@@ -11,58 +11,31 @@
 
 namespace OCA\Moodle\Controller;
 
-use OCP\App\IAppManager;
-use OCP\Files\IAppData;
-use OCP\AppFramework\Http\DataDisplayResponse;
-
-use OCP\IURLGenerator;
 use OCP\IConfig;
-use OCP\IServerContainer;
-use OCP\IL10N;
-use Psr\Log\LoggerInterface;
-
-use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\RedirectResponse;
-
-use OCP\AppFramework\Http\ContentSecurityPolicy;
-
 use OCP\IRequest;
-use OCP\IDBConnection;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
-use OCA\Moodle\Service\MoodleAPIService;
 use OCA\Moodle\AppInfo\Application;
 
 class ConfigController extends Controller {
 
-	private $userId;
+	/**
+	 * @var IConfig
+	 */
 	private $config;
-	private $dbconnection;
-	private $dbtype;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
 
-	public function __construct($AppName,
+	public function __construct(string $appName,
 								IRequest $request,
-								IServerContainer $serverContainer,
 								IConfig $config,
-								IAppManager $appManager,
-								IAppData $appData,
-								IDBConnection $dbconnection,
-								IURLGenerator $urlGenerator,
-								IL10N $l,
-								LoggerInterface $logger,
-								MoodleAPIService $moodleAPIService,
-								$userId) {
-		parent::__construct($AppName, $request);
-		$this->l = $l;
-		$this->userId = $userId;
-		$this->appData = $appData;
-		$this->serverContainer = $serverContainer;
+								?string $userId) {
+		parent::__construct($appName, $request);
 		$this->config = $config;
-		$this->dbconnection = $dbconnection;
-		$this->urlGenerator = $urlGenerator;
-		$this->logger = $logger;
-		$this->moodleAPIService = $moodleAPIService;
+		$this->userId = $userId;
 	}
 
 	/**
@@ -81,8 +54,7 @@ class ConfigController extends Controller {
 			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
 			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'privatetoken');
 		}
-		$response = new DataResponse(1);
-		return $response;
+		return new DataResponse(1);
 	}
 
 	/**
@@ -95,7 +67,6 @@ class ConfigController extends Controller {
 		foreach ($values as $key => $value) {
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
 		}
-		$response = new DataResponse(1);
-		return $response;
+		return new DataResponse(1);
 	}
 }

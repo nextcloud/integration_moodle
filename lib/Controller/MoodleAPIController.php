@@ -11,21 +11,8 @@
 
 namespace OCA\Moodle\Controller;
 
-use OCP\App\IAppManager;
-use OCP\Files\IAppData;
 use OCP\AppFramework\Http\DataDisplayResponse;
-
-use OCP\IURLGenerator;
 use OCP\IConfig;
-use OCP\IServerContainer;
-use OCP\IL10N;
-
-use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\RedirectResponse;
-
-use OCP\AppFramework\Http\ContentSecurityPolicy;
-
-use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
@@ -35,32 +22,42 @@ use OCA\Moodle\AppInfo\Application;
 
 class MoodleAPIController extends Controller {
 
-
-	private $userId;
+	/**
+	 * @var IConfig
+	 */
 	private $config;
-	private $dbconnection;
-	private $dbtype;
+	/**
+	 * @var MoodleAPIService
+	 */
+	private $moodleAPIService;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
+	/**
+	 * @var string
+	 */
+	private $accessToken;
+	/**
+	 * @var string
+	 */
+	private $moodleUrl;
+	/**
+	 * @var bool
+	 */
+	private $checkSsl;
 
-	public function __construct($AppName,
+	public function __construct(string $appName,
 								IRequest $request,
-								IServerContainer $serverContainer,
 								IConfig $config,
-								IL10N $l10n,
-								IAppManager $appManager,
-								IAppData $appData,
-								LoggerInterface $logger,
 								MoodleAPIService $moodleAPIService,
-								$userId) {
-		parent::__construct($AppName, $request);
-		$this->userId = $userId;
-		$this->l10n = $l10n;
-		$this->appData = $appData;
-		$this->serverContainer = $serverContainer;
+								?string $userId) {
+		parent::__construct($appName, $request);
 		$this->config = $config;
-		$this->logger = $logger;
 		$this->moodleAPIService = $moodleAPIService;
-		$this->accessToken = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
-		$this->moodleUrl = $this->config->getUserValue($this->userId, Application::APP_ID, 'url', '');
+		$this->userId = $userId;
+		$this->accessToken = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$this->moodleUrl = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
 		$this->checkSsl = $this->config->getUserValue($this->userId, Application::APP_ID, 'check_ssl', '1') === '1';
 	}
 

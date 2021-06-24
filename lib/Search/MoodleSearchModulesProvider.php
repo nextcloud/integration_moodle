@@ -45,12 +45,21 @@ class MoodleSearchModulesProvider implements IProvider {
 
 	/** @var IURLGenerator */
 	private $urlGenerator;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var MoodleAPIService
+	 */
+	private $service;
 
 	/**
 	 * CospendSearchProvider constructor.
 	 *
 	 * @param IAppManager $appManager
 	 * @param IL10N $l10n
+	 * @param IConfig $config
 	 * @param IURLGenerator $urlGenerator
 	 * @param MoodleAPIService $service
 	 */
@@ -105,13 +114,13 @@ class MoodleSearchModulesProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme');
 		$thumbnailUrl = ($theme === 'dark') ?
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg') :
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
 
-		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url', '');
-		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$moodleUrl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'url');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
 		$checkSsl = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'check_ssl', '1') === '1';
 		$searchModulesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_modules_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchModulesEnabled) {
@@ -123,7 +132,7 @@ class MoodleSearchModulesProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
+		$formattedResults = array_map(function (array $entry) use ($thumbnailUrl, $moodleUrl): MoodleSearchResultEntry {
 			return new MoodleSearchResultEntry(
 				$this->getThumbnailUrl($entry, $thumbnailUrl),
 				$this->getMainText($entry),
@@ -183,8 +192,8 @@ class MoodleSearchModulesProvider implements IProvider {
 	 */
 	protected function getThumbnailurl(array $entry, string $thumbnailUrl): string {
 		return $thumbnailUrl;
-		return $entry['modicon']
-			? $this->urlGenerator->linkToRoute('integration_moodle.moodleAPI.getMoodleAvatar', []) . '?url=' . urlencode($entry['modicon'])
-			: $thumbnailUrl;
+//		return $entry['modicon']
+//			? $this->urlGenerator->linkToRoute('integration_moodle.moodleAPI.getMoodleAvatar', []) . '?url=' . urlencode($entry['modicon'])
+//			: $thumbnailUrl;
 	}
 }

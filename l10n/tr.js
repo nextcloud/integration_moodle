@@ -6,6 +6,7 @@ OC.L10N.register(
     "Moodle course" : "Moodle dersi",
     "Moodle course modules" : "Moodle ders modülleri",
     "Moodle upcoming events" : "Moodle yaklaşan etkinlikler",
+    "Bad HTTP method" : "HTTP yöntemi hatalı",
     "Bad credentials" : "Kimlik doğrulama bilgileri hatalı",
     "Connected accounts" : "Bağlı hesaplar",
     "Moodle integration" : "Moodle bütünleştirmesi",

@@ -1,0 +1,24 @@
+{ "translations": {
+    "Moodle notifications" : "Upozornenia Moodle",
+    "Moodle courses" : "Kurzy Moodle",
+    "Moodle course" : "Kurz Moodle",
+    "Moodle course modules" : "Moduly kurzov Moodle",
+    "Moodle upcoming events" : "Nadchádzajúce udalosti Moodle",
+    "Bad HTTP method" : "Zlá metóda HTTP",
+    "Bad credentials" : "Nesprávne prihlasovacie údaje",
+    "Connected accounts" : "Prepojené účty",
+    "Moodle integration" : "Moodle integrácia",
+    "Disable search for all users" : "Vypnúť vyhľadávanie pre všetkých užívateľov",
+    "Moodle instance address" : "Adresa inštancie Moodle",
+    "Moodle instance URL" : "URL inštancie Moodle",
+    "Moodle login" : "Prihlásenie Moodle",
+    "Your user name" : "Vaše užívateľské meno",
+    "Moodle password" : "Heslo Moodle",
+    "Your password" : "Vaše heslo",
+    "Connect to Moodle" : "Pripojiť k Moodle",
+    "Connected as {user}" : "Pripojený ako {user}",
+    "Disconnect from Moodle" : "Odpojiť od Moodle",
+    "Check SSL certificate" : "Skontrolovať SSL certifikát",
+    "Enable searching for courses" : "Povoliť vyhľadávanie kurzov"
+},"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
+}

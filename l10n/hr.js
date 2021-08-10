@@ -6,6 +6,7 @@ OC.L10N.register(
     "Moodle course" : "Moodle tečaj",
     "Moodle course modules" : "Moduli Moodle tečajeva",
     "Moodle upcoming events" : "Nadolazeći Moodle događaji",
+    "Bad HTTP method" : "Pogrešna metoda HTTP-a",
     "Bad credentials" : "Pogrešne vjerodajnice",
     "Connected accounts" : "Povezani računi",
     "Moodle integration" : "Moodle integracija",

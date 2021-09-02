@@ -13,6 +13,7 @@ OC.L10N.register(
     "Moodle instance URL" : "Moodle-instanssin URL",
     "Moodle login" : "Moodle-käyttäjätunnus",
     "Moodle password" : "Moodle-salasana",
+    "Your password" : "Salasanasi",
     "Connect to Moodle" : "Yhdistä Moodleen",
     "Connected as {user}" : "Yhdistetty käyttäjänä {user}",
     "Disconnect from Moodle" : "Katkaise yhteys Moodleen",

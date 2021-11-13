@@ -6,6 +6,7 @@ OC.L10N.register(
     "Moodle course" : "Moodle-kurssi",
     "Moodle course modules" : "Moodle-kurssimoduulit",
     "Moodle upcoming events" : "Moodlen tulevat tapahtumat",
+    "Bad HTTP method" : "Virheellinen HTTP-metodi",
     "Bad credentials" : "Virheelliset kirjautumistiedot",
     "Connected accounts" : "Yhdistetyt tilit",
     "Moodle integration" : "Moodle-integraatio",
@@ -17,8 +18,14 @@ OC.L10N.register(
     "Connect to Moodle" : "Yhdistä Moodleen",
     "Connected as {user}" : "Yhdistetty käyttäjänä {user}",
     "Disconnect from Moodle" : "Katkaise yhteys Moodleen",
+    "Check SSL certificate" : "Tarkista SSL-varmenne",
+    "Moodle options saved" : "Moodle-valinnat tallennettu",
+    "Failed to save Moodle options" : "Moodle-valintojen tallentaminen epäonnistui",
+    "Successfully connected to Moodle!" : "Yhdistetty Moodleen!",
+    "Failed to authenticate to Moodle" : "Tunnistautuminen Moodleen epäonnistui",
     "No Moodle account connected" : "Moodle-tiliä ei ole yhdistetty",
     "Error connecting to Moodle" : "Virhe yhdistäessä Moodleen",
-    "No Moodle notifications!" : "Ei Moodle-ilmoituksia!"
+    "No Moodle notifications!" : "Ei Moodle-ilmoituksia!",
+    "Failed to get Moodle notifications" : "Moodle-ilmoitusten saaminen epäonnistui"
 },
 "nplurals=2; plural=(n != 1);");

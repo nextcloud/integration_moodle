@@ -11,6 +11,7 @@ OC.L10N.register(
     "Connect to Moodle" : "Moodleに接続",
     "Connected as {user}" : "{user} を接続済み",
     "Disconnect from Moodle" : "Moodleから接続を解除",
+    "Successfully connected to Moodle!" : "Moodleへの接続に成功しました！",
     "No Moodle notifications!" : "Moodleがありません！"
 },
 "nplurals=1; plural=0;");

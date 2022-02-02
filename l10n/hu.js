@@ -6,6 +6,7 @@ OC.L10N.register(
     "Moodle course" : "Moodle tanfolyam",
     "Moodle course modules" : "Moodle tanfolyam modulok",
     "Moodle upcoming events" : "Nincsenek közelgő események",
+    "Bad HTTP method" : "Nem megfelelő HTTP folyamat",
     "Bad credentials" : "Hibás hitelesítő adatok",
     "Connected accounts" : "Kapcsolt fiókok",
     "Moodle integration" : "Moodle integráció",

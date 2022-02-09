@@ -1,6 +1,18 @@
 OC.L10N.register(
     "integration_moodle",
     {
+    "Moodle course" : "Moodle-kurs",
+    "Bad credentials" : "Ogiltiga inloggningsuppgifter",
+    "Connected accounts" : "Anslutna konton",
+    "Moodle integration" : "Moodle-integrering",
+    "Moodle instance URL" : "Moodle-instansens URL",
+    "Moodle login" : "Moodle-inloggning",
+    "Your user name" : "Ditt användarnamn",
+    "Moodle password" : "Moodle-lösenord",
+    "Your password" : "Ditt lösenord",
+    "Connect to Moodle" : "Anslut till Moodle",
+    "Connected as {user}" : "Ansluten som {user}",
+    "Disconnect from Moodle" : "Koppla ner från Moodle",
     "Enable searching for courses" : "Aktivera sökning efter kurser",
     "Enable searching for course modules" : "Aktivera sökning efter kursmoduler",
     "Enable searching for upcoming events" : "Aktivera sökning efter kommande evenemang",

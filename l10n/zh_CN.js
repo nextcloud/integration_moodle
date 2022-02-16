@@ -14,6 +14,7 @@ OC.L10N.register(
     "Moodle login" : "Moodle 登录",
     "Moodle password" : "Moodle 密码",
     "Your password" : "您的密码",
+    "Connect to Moodle" : "连接Moodle",
     "Connected as {user}" : "作为 {user} 已连接",
     "Disconnect from Moodle" : "从Moodle断开"
 },

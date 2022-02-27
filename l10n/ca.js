@@ -19,7 +19,7 @@ OC.L10N.register(
     "Moodle password" : "Contrasenya de Moodle",
     "Your password" : "Contrasenya",
     "Connect to Moodle" : "Connecta't a Moodle",
-    "Connected as {user}" : "S'ha connectat com a {usuari}",
+    "Connected as {user}" : "S'ha connectat com a {user}",
     "Disconnect from Moodle" : "Desconnecta de Moodle",
     "Check SSL certificate" : "Comprova el certificat SSL",
     "Enable searching for courses" : "Habilita la cerca de cursos",

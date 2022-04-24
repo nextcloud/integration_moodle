@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_moodle",
     {
+    "Bad HTTP method" : "Неверный метод HTTP",
     "Bad credentials" : "Неверные учётные данные",
     "Connected accounts" : "Подключённые учётные записи",
     "Connected as {user}" : "Подключено под именем {user}"

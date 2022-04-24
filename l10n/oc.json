@@ -1,5 +1,7 @@
 { "translations": {
+    "Bad credentials" : "Marrits identificants",
     "Moodle password" : "Senhal moodle",
-    "Your password" : "Vòstre senhal"
+    "Your password" : "Vòstre senhal",
+    "Connected as {user}" : "Connectat coma {user}"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

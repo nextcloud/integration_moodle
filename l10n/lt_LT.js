@@ -6,6 +6,7 @@ OC.L10N.register(
     "Moodle course" : "„Moodle“ kursas",
     "Moodle course modules" : "„Moodle“ kursų modulis",
     "Moodle upcoming events" : "„Moodle“ artėjantys įvykiai",
+    "Bad HTTP method" : "Blogas HTTP metodas",
     "Bad credentials" : "Blogi prisijungimo duomenys",
     "Connected accounts" : "Prijungtos paskyros",
     "Moodle integration" : "„Moodle“ integracija",

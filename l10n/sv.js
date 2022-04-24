@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_moodle",
     {
     "Moodle course" : "Moodle-kurs",
+    "Bad HTTP method" : "Felaktig HTTP-metod",
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "Connected accounts" : "Anslutna konton",
     "Moodle integration" : "Moodle-integrering",

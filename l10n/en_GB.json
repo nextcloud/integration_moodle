@@ -1,0 +1,5 @@
+{ "translations": {
+    "Bad HTTP method" : "Bad HTTP method",
+    "Bad credentials" : "Bad credentials"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

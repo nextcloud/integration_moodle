@@ -15,7 +15,7 @@ OC.L10N.register(
     "Disable search for all users" : "Arama tüm kullanıcılar için devre dışı bırakılsın",
     "Moodle admin options saved" : "Moodle yönetici ayarları kaydedildi",
     "Failed to save Moodle admin options" : "Moodle yönetici ayarları kaydedilemedi",
-    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Parolanız kaydedilmez. Moodle hesabınızla etkileşim kurmak için kullanılacak bir erişim kodu almak için yalnız bir kez kullanılır.",
+    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Parolanız kaydedilmez. Moodle hesabınızla etkileşim kurmak için kullanılacak bir erişim kodu almak için yalnızca bir kez kullanılır.",
     "Moodle instance address" : "Moodle kopyası adresi",
     "Moodle instance URL" : "Moodle kopyası adresi",
     "Moodle login" : "Moodle kullanıcı adı",

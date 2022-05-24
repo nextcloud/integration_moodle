@@ -36,5 +36,5 @@
     "Error connecting to Moodle" : "Erro de conexão com o Moodle",
     "No Moodle notifications!" : "Nenhuma notificação do Moodle!",
     "Failed to get Moodle notifications" : "Falha ao obter as notificações do Moodle"
-},"pluralForm" :"nplurals=2; plural=(n > 1);"
+},"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

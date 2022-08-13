@@ -11,7 +11,7 @@ OC.L10N.register(
     "Connected accounts" : "Propojené účty",
     "Moodle integration" : "Napojení na Moodle",
     "Integration of Moodle learning management system" : "Napojení na systém správy e-learningu Moodle",
-    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Napojení na Moodle poskytuje ovládací prvek na přehled, zobrazující informace o vašich stávajících kurzech a nadcházejících událostech.\n    Umožňuje také vyhledávat v obsahu Moodle.",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Napojení na Moodle poskytuje ovládací prvek pro nástěnku, zobrazující informace o vašich stávajících kurzech a nadcházejících událostech.\n    Umožňuje také vyhledávat v obsahu Moodle.",
     "Disable search for all users" : "Znemožnit hledání pro všechny uživatele",
     "Moodle admin options saved" : "Administrátorské předvolby správy pro Moodle uloženy",
     "Failed to save Moodle admin options" : "Nepodařilo se uložit předvolby správy Moodle",

@@ -23,7 +23,7 @@ OC.L10N.register(
     "Moodle password" : "Moodle jelszó",
     "Your password" : "Az Ön jelszava",
     "Connect to Moodle" : "Kapcsolódás a Moodle-hez",
-    "Connected as {user}" : "Kapcsolódva {user} felhasználóként",
+    "Connected as {user}" : "Kapcsolódva mint {user}",
     "Disconnect from Moodle" : "Kapcsolat bontása a Moodle-lel",
     "Check SSL certificate" : "SSL tanúsítvány ellenőrzése",
     "Enable searching for courses" : "Tanfolyamok keresésének engedélyezése",

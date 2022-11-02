@@ -10,6 +10,7 @@ OC.L10N.register(
     "Connected accounts" : "关联账号",
     "Moodle integration" : "Moodle 集成",
     "Integration of Moodle learning management system" : "与Moodle 学习管理系统的集成",
+    "Disable search for all users" : "对所有用户禁用搜索",
     "Moodle instance address" : "Moodle 实例地址",
     "Moodle instance URL" : "Moodle 实例 URL",
     "Moodle login" : "Moodle 登录",
@@ -18,6 +19,10 @@ OC.L10N.register(
     "Your password" : "您的密码",
     "Connect to Moodle" : "连接Moodle",
     "Connected as {user}" : "作为 {user} 已连接",
-    "Disconnect from Moodle" : "从Moodle断开"
+    "Disconnect from Moodle" : "从Moodle断开",
+    "Check SSL certificate" : "检查SSL证书",
+    "Warning, everything you type in the search bar will be sent to your Moodle instance." : "警告：您在搜索栏中输入的所有内容都将发送到您的 Moodle 实例。",
+    "Failed to save Moodle options" : "保存 Moodle 选项失败",
+    "No Moodle notifications!" : "无 Moodle 通知"
 },
 "nplurals=1; plural=0;");

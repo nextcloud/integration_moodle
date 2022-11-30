@@ -13,7 +13,7 @@ OC.L10N.register(
     "Integration of Moodle learning management system" : "A Moodle tanulásirányítási rendszer integrálása",
     "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "A Moodle integráció egy irányítópult-modult kínál, amely információkat tartalmaz a legutóbbi tanfolyamokról és a közelgő eseményekről.\nSzintén lehetővé teszi a tartalmak keresését a Moodle-ban.",
     "Disable search for all users" : "Keresés letiltása az összes felhasználónak",
-    "Moodle admin options saved" : "A Moodle rendszergazdai beállítása mentve",
+    "Moodle admin options saved" : "A Moodle rendszergazdai beállításai mentve",
     "Failed to save Moodle admin options" : "A Moodle rendszergazdai beállításainak mentése sikertelen",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "A jelszava nem kerül tárolásra. Egyedül a hozzáférési token megszerzéséhez használatos, amely a továbbiakban a Moodle-fiókkal való interakcióhoz lesz használva.",
     "Moodle instance address" : "Moodle példány címe",

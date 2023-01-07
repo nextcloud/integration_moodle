@@ -11,7 +11,7 @@ OC.L10N.register(
     "Connected accounts" : "Konektaturiko kontuak",
     "Moodle integration" : "Moodle integrazioa",
     "Integration of Moodle learning management system" : "Ikaskuntza kudeatzeko Moodle sistemaren integrazioa",
-    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle integrazioak zure azken ikastaroen eta datozen gertaerak bistaratzen dituen panel-widgeta eskaintzen du.\n    Moodle barruan edukiak bilatzeko aukera ere ematen dizu.",
+    "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle integrazioak zure azken ikastaroen eta datozen gertaerak bistaratzen dituen panel-trepeta eskaintzen du.\n    Moodle barruan edukiak bilatzeko aukera ere ematen dizu.",
     "Disable search for all users" : "Desgaitu bilaketa erabiltzaile guztientzat",
     "Moodle admin options saved" : "Moodle administratzaile aukerak ondo gorde dira",
     "Failed to save Moodle admin options" : "Moodle administratzaile aukerak gordetzeak huts egin du",

@@ -13,6 +13,7 @@ OC.L10N.register(
     "Moodle instance address" : "Moodle-instanssin osoite",
     "Moodle instance URL" : "Moodle-instanssin URL",
     "Moodle login" : "Moodle-käyttäjätunnus",
+    "Your user name" : "Käyttäjänimesi",
     "Moodle password" : "Moodle-salasana",
     "Your password" : "Salasanasi",
     "Connect to Moodle" : "Yhdistä Moodleen",

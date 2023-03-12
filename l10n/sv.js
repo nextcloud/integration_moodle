@@ -6,6 +6,7 @@ OC.L10N.register(
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "Connected accounts" : "Anslutna konton",
     "Moodle integration" : "Moodle-integrering",
+    "Disable search for all users" : "Inaktivera sökning för alla användare",
     "Moodle instance URL" : "Moodle-instansens URL",
     "Moodle login" : "Moodle-inloggning",
     "Your user name" : "Ditt användarnamn",

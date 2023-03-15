@@ -1,0 +1,7 @@
+{ "translations": {
+    "Bad HTTP method" : "Metode HTTP tidak benar",
+    "Bad credentials" : "Kredensial tidak benar",
+    "Connected accounts" : "Akun terhubung",
+    "Connected as {user}" : "Terhubung sebagai {user}"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

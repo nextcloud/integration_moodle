@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_moodle",
     {
+    "Bad HTTP method" : "שגיאה במתודת HTTP",
     "Bad credentials" : "פרטי גישה שגויים",
     "Connected accounts" : "חשבונות מקושרים"
 },

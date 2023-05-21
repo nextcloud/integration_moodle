@@ -14,7 +14,7 @@ OC.L10N.register(
     "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Moodle集成提供了一个仪表盘小部件，用于显示关于你最近的课程和即将发生的事件的信息。它还允许你在Moodle中搜索内容。",
     "Disable search for all users" : "对所有用户禁用搜索",
     "Moodle admin options saved" : "Moodle 管理员选项已保存",
-    "Failed to save Moodle admin options" : "Moodle 管理员选项保存失败",
+    "Failed to save Moodle admin options" : "保存Moodle管理员选项失败",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "你的密码未被保存。它仅用于一次性的获取访问令牌，该令牌将被用于与你的Moodle账号进行交互。",
     "Moodle instance address" : "Moodle 实例地址",
     "Moodle instance URL" : "Moodle 实例 URL",
@@ -28,10 +28,11 @@ OC.L10N.register(
     "Check SSL certificate" : "检查SSL证书",
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "警告：您在搜索栏中输入的所有内容都将发送到您的 Moodle 实例。",
     "Moodle options saved" : "Moodle 选项已保存",
-    "Failed to save Moodle options" : "保存 Moodle 选项失败",
-    "Failed to authenticate to Moodle" : "验证 Moodle 失败",
+    "Failed to save Moodle options" : "保存Moodle选项失败",
+    "Failed to authenticate to Moodle" : "验证Moodle失败",
     "No Moodle account connected" : "未连接至 Moodle 账号",
     "Error connecting to Moodle" : "连接到 Moodle 时出错",
-    "No Moodle notifications!" : "无 Moodle 通知"
+    "No Moodle notifications!" : "无 Moodle 通知",
+    "Failed to get Moodle notifications" : "获取Moodle通知失败"
 },
 "nplurals=1; plural=0;");

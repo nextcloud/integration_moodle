@@ -8,7 +8,7 @@
     "Bad credentials" : "Credenciais incorrectas",
     "Connected accounts" : "Contas conectadas",
     "Moodle integration" : "Integración de Moodle",
-    "Integration of Moodle learning management system" : "Integración do sistema de xestión de aprendizaxe Moodle",
+    "Integration of Moodle learning management system" : "Integración co sistema de xestión de aprendizaxe Moodle",
     "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "A integración de Moodle fornece un trebello de taboleiro que amosa información sobre os seus cursos recentes e os próximos eventos.\n    Tanmén permite buscar contido en Moodle.",
     "Disable search for all users" : "Desactivar a busca para todos os usuarios",
     "Moodle admin options saved" : "Gardáronse as opcións de administración de Moodle",
@@ -33,7 +33,7 @@
     "Successfully connected to Moodle!" : "Conectou satisfactoriamente con Moodle!",
     "Failed to authenticate to Moodle" : "Fallou a autenticación no Moodle",
     "No Moodle account connected" : "Non hai ningunha conta do Moodle conectada",
-    "Error connecting to Moodle" : "Produciuse un erro ao conectar co Moodle",
+    "Error connecting to Moodle" : "Produciuse un erro ao conectar con Moodle",
     "No Moodle notifications!" : "Non hai notificacións de Moodle.",
     "Failed to get Moodle notifications" : "Produciuse un fallo ao obter as notificacións de Moodle"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

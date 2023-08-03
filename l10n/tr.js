@@ -35,7 +35,7 @@ OC.L10N.register(
     "Successfully connected to Moodle!" : "Moodle ile bağlantı kuruldu!",
     "Failed to authenticate to Moodle" : "Moodle kimliği doğrulanamadı",
     "No Moodle account connected" : "Bağlı bir Moodle hesabı yok",
-    "Error connecting to Moodle" : "Moodle bağlantısı kurulurken sorun çıktı",
+    "Error connecting to Moodle" : "Moodle ile bağlantı kurulurken sorun çıktı",
     "No Moodle notifications!" : "Herhangi bir Moodle bildirimi yok!",
     "Failed to get Moodle notifications" : "Moodle bildirimleri alınamadı"
 },

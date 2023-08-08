@@ -30,6 +30,13 @@ OC.L10N.register(
     "Enable searching for course modules" : "جستجوی ماژول های دوره را فعال کنید",
     "Enable searching for upcoming events" : "جستجوی رویدادهای آینده را فعال کنید",
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "هشدار، هر چیزی که در نوار جستجو تایپ می کنید به نمونه مودل شما ارسال می شود.",
-    "Moodle options saved" : "<div></div>"
+    "Moodle options saved" : "<div></div>",
+    "Failed to save Moodle options" : "گزینه های مودل ذخیره نشد",
+    "Successfully connected to Moodle!" : "با موفقیت به مودل متصل شد!",
+    "Failed to authenticate to Moodle" : "احراز هویت در مودل انجام نشد",
+    "No Moodle account connected" : "هیچ حساب مودل متصل نیست",
+    "Error connecting to Moodle" : "خطا در اتصال به مودل",
+    "No Moodle notifications!" : "بدون اطلاعیه مودل!",
+    "Failed to get Moodle notifications" : "اعلان‌های مودل دریافت نشد"
 },
 "nplurals=2; plural=(n > 1);");

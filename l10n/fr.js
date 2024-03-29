@@ -19,7 +19,7 @@ OC.L10N.register(
     "Moodle instance address" : "Adresse de l'instance Moodle",
     "Moodle instance URL" : "URL de l'instance Moodle",
     "Moodle login" : "Identifiant Moodle",
-    "Your user name" : "Votre nom d'utilisateur",
+    "Your user name" : "Votre nom d’utilisateur",
     "Moodle password" : "Mot de passe Moodle",
     "Your password" : "Votre mot de passe",
     "Connect to Moodle" : "Se connecter à Moodle",

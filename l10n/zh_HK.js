@@ -15,7 +15,7 @@ OC.L10N.register(
     "Disable search for all users" : "禁止搜索所有用戶",
     "Moodle admin options saved" : "已儲存 Moodle 管理員選項",
     "Failed to save Moodle admin options" : "儲存 Moodle 管理員選項失敗",
-    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "您的密碼未存儲。它僅用於獲取存取權杖，該權杖將用於與您的 Moodle 賬戶進行交互。",
+    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "您的密碼未存儲。它僅用於獲取存取權杖，該權杖將用於與您的 Moodle 帳戶進行交互。",
     "Moodle instance address" : "Moodle 站台地址",
     "Moodle instance URL" : "Moodle 站台 URL",
     "Moodle login" : "Moodle 登入",

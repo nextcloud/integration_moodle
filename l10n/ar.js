@@ -32,7 +32,7 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent to your Moodle instance." : "تحذير! كل ما تكتبه في خانة البحث سيتم إرساله إلى خادوم \"مودِل\" Moodle.",
     "Moodle options saved" : "تمّ حفظ خيارات \"مودِل\" Moodle",
     "Failed to save Moodle options" : "تعذّر حفظ خيارات \"مودِل\" Moodle",
-    "Successfully connected to Moodle!" : "تمّ الاتصال مع \"مودِل\" Moodle بنجاحٍ",
+    "Successfully connected to Moodle!" : "تمّ الاتصال مع \"مودِل\" Moodle بنجاح",
     "Failed to authenticate to Moodle" : "تعذّر الاتصال مع \"مودِل\" Moodle",
     "No Moodle account connected" : "لا يوجد حساب \"مودِل\" Moodle مُتّصلٌ",
     "Error connecting to Moodle" : "خطأ في التوصيل مع \"مودِل\" Moodle",

@@ -23,7 +23,7 @@ OC.L10N.register(
     "Moodle password" : "Moodle پارول",
     "Your password" : "پارولىڭىز",
     "Connect to Moodle" : "Moodle غا ئۇلاڭ",
-    "Connected as {user}" : "{ئىشلەتكۈچى as قىلىپ ئۇلاندى",
+    "Connected as {user}" : "{user} as قىلىپ ئۇلاندى",
     "Disconnect from Moodle" : "Moodle دىن ئۈزۈڭ",
     "Check SSL certificate" : "SSL گۇۋاھنامىسىنى تەكشۈرۈڭ",
     "Enable searching for courses" : "دەرسلەرنى ئىزدەشنى قوزغىتىڭ",

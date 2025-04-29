@@ -13,10 +13,10 @@ OC.L10N.register(
     "Integration of Moodle learning management system" : "Integration des Moodle-Lernverwaltungssystems",
     "Moodle integration provides a dashboard widget displaying information about your recent courses and upcoming events.\n    It also allows you to search for content in Moodle." : "Die Einbindung von Moodle bietet ein Dashboard-Widget, das Informationen über deine letzten Kurse und anstehende Veranstaltungen anzeigt.\n  Es ermöglicht auch die Suche nach Inhalten in Moodle.",
     "Moodle admin options saved" : "Moodle-Verwaltungseinstellungen gespeichert.",
-    "Failed to save Moodle admin options" : "Fehler beim Speichern der Moodle-Verwaltungseinstellungen",
+    "Failed to save Moodle admin options" : "Moodle-Administrationseinstellungen konnten nicht gespeichert werden",
     "Disable search for all users" : "Suche für alle Benutzer deaktivieren",
     "Moodle options saved" : "Moodle-Einstellungen gespeichert",
-    "Failed to save Moodle options" : "Fehler beim Speichern der Moodle-Einstellungen",
+    "Failed to save Moodle options" : "Moodle-Einstellungen konnten nicht gespeichert werden",
     "Successfully connected to Moodle!" : "Erfolgreich mit Moodle verbunden!",
     "Failed to authenticate to Moodle" : "Anmeldung bei Moodle fehlgeschlagen",
     "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Dein Passwort wird nicht gespeichert. Es wird nur einmal verwendet, um ein Zugriffstoken zu erhalten, mit dem du mit deinem Moodle-Konto interagieren kannst.",
@@ -37,6 +37,6 @@ OC.L10N.register(
     "No Moodle account connected" : "Kein Moodle-Konto verbunden",
     "Error connecting to Moodle" : "Fehler bei der Verbindung mit Moodle",
     "No Moodle notifications!" : "Keine Moodle-Benachrichtigungen!",
-    "Failed to get Moodle notifications" : "Fehler beim Abrufen der Moodle-Benachrichtigungen"
+    "Failed to get Moodle notifications" : "Moodle-Benachrichtigungen konnten nicht abgerufen werden"
 },
 "nplurals=2; plural=(n != 1);");

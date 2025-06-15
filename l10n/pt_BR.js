@@ -26,7 +26,7 @@ OC.L10N.register(
     "Your user name" : "Seu nome de usuário",
     "Moodle password" : "Senha Moodle",
     "Your password" : "Sua senha",
-    "Connect to Moodle" : "Conecte-se ao Moodle",
+    "Connect to Moodle" : "Conectar ao Moodle",
     "Connected as {user}" : "Conectado como {user}",
     "Disconnect from Moodle" : "Desconectar do Moodle",
     "Check SSL certificate" : "Verificar certificado SSL",

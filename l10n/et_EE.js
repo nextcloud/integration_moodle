@@ -1,10 +1,30 @@
 OC.L10N.register(
     "integration_moodle",
     {
+    "Moodle notifications" : "Moodle'i teavitused",
+    "Moodle courses" : "Moodle'i kursused",
+    "Moodle course" : "Moodle'i kursus",
+    "Moodle course modules" : "Moodle'i kursuste moodulid",
+    "Moodle upcoming events" : "Tulekul sündmused Moodle'is",
     "Bad HTTP method" : "Vigane HTTP-meetod",
     "Bad credentials" : "Vale kasutajanimi, salasõna või tunnusluba",
     "Connected accounts" : "Ühendatud kasutajakontod",
+    "Moodle integration" : "Moodle'i lõiming",
+    "Integration of Moodle learning management system" : "Moodle'i hariduse haldussüsteemi lõiming",
+    "Moodle instance address" : "Moodle'i serveri aadress",
+    "Moodle instance URL" : "Moodle'i serveri võrguaadress",
+    "Moodle login" : "Moodle'i kasutajanimi",
+    "Your user name" : "Sinu kasutajanimi",
+    "Moodle password" : "Moodle'i salasõna",
     "Your password" : "Sinu salasõna",
-    "Connected as {user}" : "Ühendatud kui {user}"
+    "Connect to Moodle" : "Loo ühendus Moodle'iga",
+    "Connected as {user}" : "Ühendatud kui {user}",
+    "Disconnect from Moodle" : "Katkesta Moodle'i ühendus",
+    "Check SSL certificate" : "Kontrolli SSL-sertifikaati",
+    "Enable searching for courses" : "Lülita kursuste otsing sisse",
+    "Enable searching for course modules" : "Lülita kursuste moodulite otsing sisse",
+    "Enable searching for upcoming events" : "Lülita tulevaste sündmuste otsing sisse",
+    "No Moodle notifications!" : "Moodle'i teavitusi pole!",
+    "Failed to get Moodle notifications" : "Moodle'i teavituse laadimine ei õnnestunud"
 },
 "nplurals=2; plural=(n != 1);");

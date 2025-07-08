@@ -6,6 +6,7 @@ OC.L10N.register(
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Connected accounts" : "Sasaistītie konti",
     "Moodle password" : "Moodle parole",
+    "Connected as {user}" : "Savienojies kā {user}",
     "Enable searching for upcoming events" : "Iespējot gaidāmo notikumu meklēšanu",
     "No Moodle account connected" : "Nav sasaistītu Moodle kontu"
 },

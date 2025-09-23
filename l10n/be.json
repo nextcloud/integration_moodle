@@ -1,0 +1,5 @@
+{ "translations": {
+    "Your password is not stored. It is just used once to get an access token which will be used to interact with your Moodle account." : "Ваш пароль не захоўваецца. Ён патрэбны толькі адзін раз, каб атрымаць токен доступу, які будзе выкарыстоўвацца для ўзаемадзеяння з вашым уліковым запісам Moodle.",
+    "Your user name" : "Ваша імя карыстальніка"
+},"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
+}
